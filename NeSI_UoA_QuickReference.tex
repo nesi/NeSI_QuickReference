@@ -1,0 +1,637 @@
+\documentclass[final,t]{beamer}
+\mode<presentation>
+{
+  \usetheme{NeSI}
+%  \usetheme{Aachen}
+%  \usetheme{Oldi6}
+%  \usetheme{I6td}
+%  \usetheme{I6dv}
+%  \usetheme{I6pd}
+%  \usetheme{I6pd2}
+}
+% additional settings
+\setbeamerfont{itemize}{size=\normalsize}
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+
+% additional packages
+\usepackage{times}
+\usepackage{amsmath, amsthm, amssymb, soul, color, multicol, type1cm, verbatim, latexsym, float,multicol}
+\usepackage{exscale}
+%\boldmath
+\usepackage{booktabs, array}
+%\usepackage{rotating} %sideways environment
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage[orientation=landscape,size=custom,width=200,height=120,scale=1.9]{beamerposter}
+\usepackage[orientation=landscape,size=a4]{beamerposter}
+\listfiles
+\graphicspath{{figures/}}
+% Display a grid to help align images
+%\beamertemplategridbackground[1cm]
+
+\usepackage{listings}
+\usepackage{xspace}
+\usepackage{fp}
+\usepackage{ifthen}
+
+\title{\huge Quick Reference Guide to the High Performance Computer Environments @ NeSI}
+\author{New Zealand eScience Infrastructure}
+\institute[]{
+  Center for eResearch - University of Auckland, New Zealand  \\
+  Building 409, Rm G21, LG, 24 Symonds Street - (1010) Auckland \\
+  Phone : (+64) 9 373 7599 -  Support list:  \href{mailto:eresearch-support@auckland.ac.nz}{eresearch-support@auckland.ac.nz}
+}
+
+% abbreviations
+\makeatletter
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}[fragile]{} 
+  \begin{columns}[t]
+    \begin{column}{.32\linewidth}
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      \begin{block}{Contact Information}
+        \begin{itemize}
+        \item \textbf{web}: \url{http://www.nesi.org.nz}
+        \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CERES/}
+        \item \textbf{ganglia}: \url{http://ganglia.uoa.nesi.org.nz}
+        \item \textbf{support} : \href{mailto:eresearch-support@auckland.ac.nz}{eresearch-support@auckland.ac.nz}
+        \end{itemize}
+        \vspace*{-1.5cm}
+        \hspace*{7cm}
+        \includegraphics[scale=0.2]{qrcode.png} 
+      \end{block}
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Useful Quick References}
+        \vspace*{-3ex}
+        \begin{multicols}{2}
+        \begin{itemize}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/vi+Quick+Reference.pdf}{VI Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/Bash+Quick+Reference.pdf}{BASH Quick Reference} 
+        \item \href{https://wiki.auckland.ac.nz}{Linux Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-FortranCard.pdf}{OpenMP Fortran Syntax}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-CCard.pdf}{OpenMP 3.1 API C/C++ Syntax}
+        \item \href{https://wiki.auckland.ac.nz}{MPI Quick Reference}
+        \end{itemize}
+        \end{multicols}
+        \vspace*{-3ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Hardware Information}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|c|}
+      \hline 
+      \textbf{Architecture} & \textbf{Gulftown} & \textbf{SandyBridge} & \textbf{LargeMemory} & \textbf{GPU} \\ 
+      \hline 
+      Model & X5660 & E5-2680 & X & X \\ 
+      \hline 
+      Clock Speed & 2.8 GHz & 2.7 GHz & X & X\\ 
+      \hline 
+      Cache & 12MB & 20MB & X & X\\ 
+      \hline 
+      Intel QPI speed & 6.4GT/s & 8 GT/s & X & X\\ 
+      \hline 
+      Cores/socket & 6 & 8 & X & X\\ 
+      \hline       
+      Cores/node & 12 & 16 & X & X\\ 
+      \hline 
+      Mem/node & 96GB & 128GB & 512GB & X\\ 
+      \hline 
+      GFLOPS/node & 134.4 & 172.8 & X & X\\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Disk Spaces + Quota}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline 
+      \textbf{FileSystem} & \textbf{Space} & \textbf{Quota} & \textbf{ACL} & \textbf{Backup} & \textbf{Type} & \textbf{Usage}  \\ 
+      \hline 
+      \$HOME & 34TB & 30GB & rw & yes & GPFS & Archive \\ 
+      \hline 
+      /share & 134TB & - & ro & yes & GPFS & Archive \\ 
+      \hline 
+      /gpfs1m & 134TB & - & rw & yes & GPFS & Archive \\ 
+      \hline 
+      /gpfs4m & 34TB & - & rw & yes & GPFS & Archive \\ 
+      \hline 
+      \$TMPDIR & 255GB & - & rw & NO & EXT4 & io \\ 
+      \hline 
+      \$WORKDIR & 34TB & - & rw & NO & GPFS & io \\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Environment Modules}
+      \textbf{Environment Modules} is a very useful to manage environment variables of each application and it is very easy to use. Each module, loads all environment needed by a certain application and its dependencies automatically.
+        \begin{itemize}
+        \item  \textbf{module avail} - lists available modules
+        \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
+        \item  \textbf{module load module\_name} - loads the module with name \textit{module\_name} and its dependencies. 
+        \item  \textbf{module unload module\_name } - unload  the module with name \textit{module\_name} and its dependencies. 
+        \item  \textbf{module list} - list all modules currently loaded.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
+     \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.32\linewidth}
+    \vskip-2ex
+    \begin{columns}[t]
+    \begin{column}{.54\linewidth}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Available Compilers}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|}
+      \hline 
+      \textbf{Compiler} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
+      \hline 
+      Fortran77 & ifort & g77 & pgf77 \\ 
+      \hline 
+      Fortran90 & ifort & gfortran & pgf90 \\ 
+      \hline 
+      Fortran95 & ifort & gfortran & pgf95 \\ 
+      \hline 
+      C & icc & gcc & pgcc \\ 
+      \hline 
+      C++ & icpc & g++ & pgCC \\ 
+      \hline 
+      Debug & idb & gdb & pgdbg \\ 
+      \hline
+      Profile & vtune & gprof & gpprof \\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+     \hspace*{-0.3cm}
+     \begin{column}{.35\linewidth}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Available MPIs}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|}
+      \hline 
+      \textbf{MPI} & \textbf{version} \\ 
+      \hline 
+      OpenMPI & 1.4,1.6  \\ 
+      \hline 
+      MPICH2 & 1.4,1.5  \\ 
+      \hline 
+      PlatformMPI & 08.02  \\ 
+      \hline 
+      MVAPICH2 & 1.9a2  \\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+  \end{columns}
+
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Optimization flags}
+        \vspace*{-2ex}
+           \begin{center}
+           \begin{tabular}{|c|c|c|c|}
+           \hline 
+           \textbf{Compiler} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
+           \hline 
+           High Opt. & -fast & -O3 -ffast-math & -fast -Mipa=fast,inline \\ 
+           \hline 
+           OpenMP & -openmp & -fopenmp & -mp=nonuma \\ 
+           \hline 
+           Debug & -g & -g & -g \\ 
+           \hline 
+           Profile & -p & -pg & -p \\ 
+           \hline 
+           Gulftown & -mtarget & -march=corei7  & -tp=nehalem-64 \\ 
+           \hline 
+           SandyBridge & -mtarget & -march=corei7-avx  & -tp=sandybridge-64 \\ 
+           \hline 
+           SSE & -xsse4.2 & -msse4.2 & -Mvect=[prefetch,sse] \\ 
+           \hline 
+           AVX$^1$ & -xavx & -mavx & -fast \\ 
+           \hline 
+           \end{tabular} 
+           \begin{footnotesize}
+            \\1. Advanced Vector Extension (AVX) streaming SIMD instructions. Sandy Bridge processor only.
+            %2. for SandyBridge use : -march=corei7-avx\\
+           \end{footnotesize}
+           \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Link MKL with OpenMPI, CDFT, ScaLAPACK, BLACS and Intel Compilers}
+      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_scalapack_ilp64 \|
+      \verb|        -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_sequential \|
+      \verb|        -lmkl_core -lmkl_blacs_intelmpi_ilp64 -lpthread -lm|\\
+      \textbf{Compiler options: }      \verb|-DMKL_ILP64 -I${MKLROOT}/include|\\
+      More information at \url{http://software.intel.com/sites/products/mkl/}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Link MKL with OpenMP and Intel compilers}
+      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 \|\\
+      \verb|       -lmkl_intel_thread -lmkl_core -lpthread -lm|\\
+      \textbf{Compiler options: } \verb|-openmp -DMKL_ILP64 -I${MKLROOT}/include|
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Get Involved!}
+       \centering{\includegraphics[scale=0.6]{../../../img/avatar_19476.png}\\
+       {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:eresearch-support@auckland.ac.nz}{NeSI Team}.}}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
+     \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.32\linewidth}
+    
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{OpenSSH Access}
+      \textbf{Parameters}
+        \begin{itemize}
+        \item HOST: login.uoa.nesi.org.nz
+        \item PORT: 22
+        \end{itemize}
+      \textbf{Suggested Software}
+        \begin{itemize}
+        \item Windows: mobaxterm, Putty, Bitvise Tunnelier
+        \item MacOSX: Terminal, iTerm2
+        \item Linux: Konsole, GnomeTerminal, yakuake
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Access}
+       In order to access the file system (/home) remotely from your machine, we recommend:
+        \begin{itemize}
+        \item \textbf{SSHFS} (MacOSX) : \url{http://code.google.com/p/macfuse/}
+        \item \textbf{SSHFS} (Linux) : \url{http://fuse.sourceforge.net/sshfs.html}
+        \item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
+        \item \textbf{Konqueror} (KDE) : type fish://user@host:port
+        \item \textbf{Nautilus} (Gnome) : type sftp://user@host:port
+        \item \textbf{WinSCP} (Windows) : \url{http://winscp.net}
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Transfer with RSYNC (Unix Only)}
+       \textbf{RSYNC} over SSH protocol is the best choice to transfer big data volumes.
+        \begin{itemize}
+        \item Transfer data from your machine to the server:\\ \verb|rsync -avHl  /path/origin/* sshserver:/path/destination/|
+        \item Transfer data from the server to your machine:\\ \verb|rsync -avHl  sshserver:/path/destination/* /path/origin/|
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Transfer with scp/sftp (Unix Only)}
+       \textbf{SCP} and \textbf{SFTP} are the most popular software to transfer data across the SSH protocol.
+        \begin{itemize}
+        \item \textbf{SCP}: \verb|scp -pr sshserver:/path/destination/* path/destination/|
+        \item \textbf{SFTP}: \verb|sftp sshserver:/path/destination/* path/destination/|
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{LoadLeveler Commands}
+        \begin{itemize}
+        \item  \textbf{llsubmit} sends a new job to the scheduler for execution
+        \item  \textbf{llclass} show the current list of classes.
+        \item  \textbf{llq} returns queue information 
+         \begin{itemize}
+              \item \verb|llq -l <job id>| gives extended job record information.
+              \item \verb|llq -s <job id>| gives specific information about why the job is held.
+              \item \verb|llq -u <user name>| lists only jobs initiated by the user.
+         \end{itemize}
+        \item \textbf{llcancel} kills a queued job: \verb|llcancel <job id>|
+        \end{itemize}
+       More information about LoadLeveler in User Manual : \url{http://www.redbooks.ibm.com/redbooks/pdfs/sg246038.pdf}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Limits}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|}
+      \hline 
+      \textbf{Name} & \textbf{MaxJobCPU} & \textbf{Description} \\ 
+      \hline 
+      small1h & 41 &  Jobs running for under 1 hour (high priority)\\ 
+      \hline 
+      small6h & 41 & Jobs running for under 6 hours  (high priority)\\ 
+      \hline 
+      medium & 12500 &  Jobs running for under 1 week  (medium priority)\\ 
+      \hline 
+      long & unlimited &  Jobs running for longer than a week  (low priority)\\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+    \end{column}
+  \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                        NEW FRAME                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \begin{frame}[fragile]{} 
+  \begin{columns}[t]
+    \begin{column}{.35\linewidth}
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{SubmitScript Example : SMP job using local disk}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash 
+# Gaussian SubmitScript 
+# Optimized for run parallel job of 12 Cores in NeSI (Pandora-Gulftown)
+##########################################################################
+#@ job_name = Gaussian
+#@ class = default
+#@ notification = never
+#@ group = nesi
+#@ account_no = uoa
+#@ wall_clock_limit = 1:00
+#@ initialdir = $(home)
+#@ output = $(home)/$(job_name).txt
+#@ error = $(home)/$(job_name).err
+#@ job_type = serial
+#@ resources = ConsumableMemory(2048mb) ConsumableVirtualMemory(2048mb)
+#@ parallel_threads = 12
+#@ environment = COPY_ALL,OMP_NUM_THREADS=12
+#@ queue
+########################################################################## 
+###  Load the Enviroment Modules for Gromacs 4.5.4
+. /etc/profile.d/modules.sh
+module load g09/C.01
+##########################################################################
+###  Transfering the data to the local disk  ($TMPDIR)
+cd $TMPDIR
+cp -r $HOME/Gaussian/h2o_opt.dat . 
+setenv GAUSS_SCRDIR $TMPDIR
+##########################################################################
+###  Run the Parallel Program
+smpexec g09 < ./h2o_opt.dat > h2ol_opt.log
+##########################################################################
+###  Transfering the results to the home directory ($HOME) 
+cp -pr $TMPDIR $HOME/results/
+        \end{verbatim}
+                \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Most Outstanding OpenMPI (mpirun) Options}
+              To find the full list of the available component types under the MCA architecture load the OpenMPI module and execute : \verb|ompi_info --param all all|. More information at \textbf{\href{http://www.open-mpi.org/doc/v1.6/man1/mpirun.1.php}{OpenMPI WebSite}} \\
+      \begin{itemize}
+         \item \verb|-c, -n, --n, -np <#>| Run this many copies of the program on the given nodes. 
+         \item \verb|-npersocket <#persocket>| Launch this processes for each sockets on the node.
+         \item \verb|-pernode| On each node, launch one process.
+         \item \verb|--app <appfile>| Provide an appfile, ignoring all other command line options.
+%         \item To map processes to nodes:
+%         \begin{itemize}
+%         \item \verb|-loadbalance| - Uniform distribution of ranks across all nodes.
+%         \item \verb|-nooversubscribe| - Do not oversubscribe any nodes ???
+%         \item \verb|-bynode| - Launch processes one per node, cycling by node in a round-robin fashion.
+%         \end{itemize}
+         \item \verb|-bind-to-core, -bind-to-socket| For process binding 
+         \item \verb|-debug| Invoke the user-level debugger.
+         \item \verb|-debugger| Sequence of debuggers to search for when -debug is used.
+         \item \verb|-mca, --mca <key> <value>| Send arguments to various \textbf{MCA modules}.
+         \begin{itemize}
+         \item \verb|btl self,sm,openib| Select which network to use for MPI communications
+         \item \verb|btl_sm_use_knem 1| Use KNEM for intra-node MPI.
+         %\item \verb|-mca mpi_paffinity_alone 1| Use processor and/or memory affinity (ompi $=<$ 1.3)
+         \item \verb|coll_sm_control_size| Buffer size (in bytes) chosen to optimize collective operations
+         \item \verb|coll_fca_enable 1| Use Fabric Collective Accelerator (Only Mellanox)
+         \item \verb|coll_base_verbose 1| Verbosity level for the coll framework
+         \item \verb|coll_tuned_use_dynamic_rules 1| Dynamic optimization of collective operations
+         \item \verb|coll_tuned_alltoall_algorithm 3| AllToAll Collective communication algorithm 
+         \item \verb|coll_tuned_allreduce_algorithm 4| AllReduce Collective communication algorithm
+         \item \verb|mtl mxm| Use MellanoX Messaging library which provides enhancements to parallel communication libraries.
+         \end{itemize}
+        \end{itemize}
+        \textbf{Remember that you don't need to setup this options if you are using the \$MPIRUN wrapper!}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+    \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.3\linewidth}
+    
+ 
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Submit Script Syntax}
+        \begin{itemize}
+        \item \textbf{account\_no} = (uoa, uoc, uoo, landcare or nesiXXXX)
+        \item \textbf{blocking} = (unlimited or N). Where N is the number of tasks allocated to nodes
+        %\item \textbf{class} =
+        \item \textbf{group} = Identifies what group the job submission is done under.
+        \begin{itemize}
+            \item nesi - users without a particular NeSI project
+            \item chemistry - University of Auckland Chemistry Department
+            \item pd - NeSI Proposal Development allocations
+            \item unfunded - NeSI Research allocations without NeSI HPC funding
+            \item funded - NeSI Research allocations with NeSI HPC funding
+        \end{itemize}
+        \item \textbf{job\_name} Sets the job name and the \$job\_name macro
+        \item \textbf{job\_type} Specifies the job type for the submission. 
+        \begin{itemize}
+            \item Serial - single- or multi-threaded job, SMP, confined within a single node
+            \item MPI - Distributed Parallel Environment (includes OpenMPI 1.4 but not 1.6)
+            \item MPICH - Distributed Parallel Environment includes MPICH and OpenMPI 1.6
+        \end{itemize}        
+        %\item \textbf{node\_resources}
+        %\item \textbf{node\_usage}
+        \item \textbf{notification} Specifies under which conditions Loadleveler will send out email notifications to the specified address about the state of the job:
+        \begin{itemize}
+            \item always - notifies about every change in the job status
+            \item start - notifies when the job is activated
+            \item complete - notifies when the job ends
+            \item error - notifies only if the job fails
+            \item never - never send any notifications
+        \end{itemize}
+        \item \textbf{notify\_user} user email
+        \item \textbf{parallel\_threads} Sets the number of cores to be allocated for each task
+        %\item \textbf{queue}
+        \item \textbf{resources} Specifies what consumable resources the job requires to run per task:
+        \begin{itemize}
+            \item ConsumableMemory - the amount of physical memory required. 
+            \item ConsumableVirtualMemory - the amount of virtual memory required.
+            \item GPUDev - the number of GPU devices required (max 2 GPU).
+            \item AnsysLicenses - the number of ANSYS licenses to check out (max 40).
+        \end{itemize}
+        \item \textbf{requirements} Can be (Feature=="sandybridge") or (Feature=="westmere")
+        \item \textbf{tasks\_per\_node} specifies the total number of tasks (cores) to be run on each available node.
+        \item \textbf{total\_tasks} specifies how many tasks (cores) are to be run in total
+        \item \textbf{wall\_clock\_limit} Sets the limit for the elapsed time for which a job can run
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Useful \$MPIRUN Wrapper}
+      Inside each application module file there is a useful command wrapper of mpirun that can simplify its usage.
+      In your script you only have to write:\\
+      \verb|$MPIRUN binary <aplication options>|\\
+     Instead of:\\
+      \verb|mpirun -np 64 -mca btl self,sm,openib \|\\
+      \verb|        -mca btl_sm_use_knem 1        \|\\
+      \verb|        -mca mpi_paffinity_alone 1    \|\\
+      \verb|        --bind-to-core                \|\\
+      \verb|        binary <aplication options> |\\
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Recommended Best Practices}
+      \begin{itemize}
+         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
+         \item Use the \textbf{smpexec} for SMP jobs in order to use the core binding capabilities\\
+         \verb|smpexec myapplication argument1 argument2|\\
+         \item Ask for the minimum nodes for the specified number of cores for the very large jobs. It will take more time to enter in execution but will finish with less walltime.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
+    \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.35\linewidth}
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{SubmitScript Example : MPI job using Shared FileSystem}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash 
+# GROMACS SubmitScript 
+# Optimized for run parallel job of 64 Cores in NeSI (Pandora-SandyBridge)
+##########################################################################
+#@ job_name = Gromacs_9LDT-64
+#@ class = default
+#@ group = nesi
+#@ notification = never
+#@ account_no = uoa
+#@ wall_clock_limit = 6:00:00
+#@ resources = ConsumableMemory(4096mb) ConsumableVirtualMemory(4096mb)
+#@ job_type = MPICH
+#@ initialdir = $(home)
+#@ output = $(job_name).$(jobid).out
+#@ error = $(job_name).$(jobid).err
+#@ requirements = (Feature=="sandybridge")
+#@ tasks_per_node = 64
+#@ node = 4
+#@ queue
+########################################################################## 
+###  Load the Enviroment Modules for Gromacs 4.5.4
+. /etc/profile.d/modules.sh
+module load gromacs/4.5.4
+########################################################################## 
+###  Transfering the data to the local disk  ($TMPDIR)
+cd $WORKDIR
+cp $HOME/Gromacs_9LDT/input/* .
+########################################################################## 
+###  Run the Parallel Program
+export OMP_NUM_THREADS=1
+grompp -f full_vdw.mdp -c 9LDT-pt-md-3.gro -p 9LDT-bu.top -o 9LDT-bu.tpr
+$MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
+########################################################################## 
+###  Transfering the results to the home directory ($HOME) 
+cp -pr $WORKDIR $HOME/results/
+        \end{verbatim}
+        \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{GriSu}
+        \begin{itemize}
+        \item  u
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End: 
