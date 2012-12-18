@@ -65,7 +65,7 @@
         \end{itemize}
         \vspace*{-1.5cm}
         \hspace*{7cm}
-        \includegraphics[scale=0.2]{qrcode.png} 
+        \includegraphics[scale=0.2]{img/qrcode.png} 
       \end{block}
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,7 +279,7 @@
  
        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Get Involved!}
-       \centering{\includegraphics[scale=0.6]{../../../img/avatar_19476.png}\\
+       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
        {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:eresearch-support@auckland.ac.nz}{NeSI Team}.}}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -469,7 +469,7 @@ cp -pr $TMPDIR $HOME/results/
          \item \verb|mtl mxm| Use MellanoX Messaging library which provides enhancements to parallel communication libraries.
          \end{itemize}
         \end{itemize}
-        \textbf{Remember that you don't need to setup this options if you are using the \$MPIRUN wrapper!}
+        \textbf{Remember that you don't need to setup this options if you are using the MPIRUN wrapper!}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -536,16 +536,18 @@ cp -pr $TMPDIR $HOME/results/
 
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Useful \$MPIRUN Wrapper}
+      \begin{block}{Useful MPIRUN Wrapper}
       Inside each application module file there is a useful command wrapper of mpirun that can simplify its usage.
       In your script you only have to write:\\
-      \verb|$MPIRUN binary <aplication options>|\\
+      \verb|MPIRUN binary <aplication options>|\\
      Instead of:\\
       \verb|mpirun -np 64 -mca btl self,sm,openib \|\\
       \verb|        -mca btl_sm_use_knem 1        \|\\
       \verb|        -mca mpi_paffinity_alone 1    \|\\
       \verb|        --bind-to-core                \|\\
       \verb|        binary <aplication options> |\\
+      The \textbf{MPIRUN} Wrapper can be setup in the module file using the following syntax:
+      \verb|set-alias  MPIRUN  "mpirun -np \$LOADL_TOTAL_TASKS OPTIONS \$@" |\\
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -568,8 +570,7 @@ cp -pr $TMPDIR $HOME/results/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     \begin{column}{.35\linewidth}
-
-
+    
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{SubmitScript Example : MPI job using Shared FileSystem}
               \vspace*{-3ex}
@@ -605,7 +606,7 @@ cp $HOME/Gromacs_9LDT/input/* .
 ###  Run the Parallel Program
 export OMP_NUM_THREADS=1
 grompp -f full_vdw.mdp -c 9LDT-pt-md-3.gro -p 9LDT-bu.top -o 9LDT-bu.tpr
-$MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
+MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
 ########################################################################## 
 ###  Transfering the results to the home directory ($HOME) 
 cp -pr $WORKDIR $HOME/results/
