@@ -91,7 +91,7 @@
       \begin{center}
       \begin{tabular}{|c|c|c|c|c|}
       \hline 
-      \textbf{Architecture} & \textbf{Gulftown} & \textbf{SandyBridge} & \textbf{LargeMemory} & \textbf{GPU} \\ 
+      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMemory} & \textbf{GPU} \\ 
       \hline 
       Model & X5660 & E5-2680 & E7-4870 & X5660 (M2090) \\ 
       \hline 
@@ -117,7 +117,7 @@
 
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Disk Spaces + Quota}
+      \begin{block}{Disk Spaces + Default Quota}
         \vspace*{-2ex}
       \begin{center}
       \begin{tabular}{|c|c|c|c|c|c|c|}
@@ -132,9 +132,9 @@
       \hline 
       /gpfs4m & 34TB & - & rw & yes & GPFS & Archive \\ 
       \hline 
-      \$TMPDIR & 255GB & - & rw & NO & EXT4 & io \\ 
+      \$TMPDIR & 240GB & - & rw & NO & EXT4 & io \\ 
       \hline 
-      \$WORKDIR & 34TB & - & rw & NO & GPFS & io \\ 
+      \$JOB\_SCRATCH\_DIR & 59TB & - & rw & NO & GPFS & io \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -206,6 +206,8 @@
       \hline 
       \textbf{MPI} & \textbf{version} \\ 
       \hline 
+      Intel MPI & 4.1.0.024  \\ 
+      \hline 
       OpenMPI & 1.4,1.6  \\ 
       \hline 
       MPICH2 & 1.4,1.5  \\ 
@@ -276,75 +278,7 @@
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
- 
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Get Involved!}
-       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
-       {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:eresearch-support@auckland.ac.nz}{NeSI Team}.}}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-
-     \end{column}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    \begin{column}{.32\linewidth}
-    
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{OpenSSH Access}
-      \textbf{Parameters}
-        \begin{itemize}
-        \item HOST: login.uoa.nesi.org.nz
-        \item PORT: 22
-        \end{itemize}
-      \textbf{Suggested Software}
-        \begin{itemize}
-        \item Windows: \href{http://mobaxterm.mobatek.net/}{mobaxterm}, \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/}{Putty}, \href{http://www.bitvise.com/tunnelier}{Bitvise Tunnelier}
-        \item MacOSX: Terminal(Included in the OS), \href{http://www.iterm2.com/}{iTerm2}
-        \item Linux: \href{http://konsole.kde.org/}{Konsole}, GnomeTerminal, \href{http://yakuake.kde.org/}{yakuake}
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Remote File System Access}
-       In order to access the file system (/home) remotely from your machine, we recommend:
-        \begin{itemize}
-        \item \textbf{SSHFS} (MacOSX) : \url{http://code.google.com/p/macfuse/}
-        \item \textbf{SSHFS} (Linux) : \url{http://fuse.sourceforge.net/sshfs.html}
-        \item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
-        \item \textbf{Konqueror} (KDE) : type fish://user@host:port
-        \item \textbf{Nautilus} (Gnome) : type sftp://user@host:port
-        \item \textbf{WinSCP} (Windows) : \url{http://winscp.net}
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Remote File System Transfer with RSYNC (Unix Only)}
-       \textbf{RSYNC} over SSH protocol is the best choice to transfer big data volumes.
-        \begin{itemize}
-        \item Transfer data from your machine to the server:\\ \verb|rsync -avHl  /path/origin/* sshserver:/path/destination/|
-        \item Transfer data from the server to your machine:\\ \verb|rsync -avHl  sshserver:/path/destination/* /path/origin/|
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Remote File System Transfer with scp/sftp (Unix Only)}
-       \textbf{SCP} and \textbf{SFTP} are the most popular software to transfer data across the SSH protocol.
-        \begin{itemize}
-        \item \textbf{SCP}: \verb|scp -pr sshserver:/path/destination/* path/destination/|
-        \item \textbf{SFTP}: \verb|sftp sshserver:/path/destination/* path/destination/|
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
- 
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{LoadLeveler Commands}
         \begin{itemize}
         \item  \textbf{llsubmit} sends a new job to the scheduler for execution
@@ -385,6 +319,97 @@
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+     \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.32\linewidth}
+    \vskip-2ex
+    \begin{columns}[t]
+    \begin{column}{.38\linewidth}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{OpenSSH Access}
+      \textbf{Parameters}
+        \begin{itemize}
+        \item HOST: login.uoa.nesi.org.nz
+        \item PORT: 22
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+     \hspace*{-0.6cm}
+     \begin{column}{.56\linewidth}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Suggested Software}
+        \begin{itemize}
+        \item Windows: \href{http://mobaxterm.mobatek.net/}{mobaxterm}, \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/}{Putty}, \href{http://www.bitvise.com/tunnelier}{Bitvise Tunnelier}
+        \item MacOSX: Terminal(Included in the OS), \href{http://www.iterm2.com/}{iTerm2}
+        \item Linux: \href{http://konsole.kde.org/}{Konsole}, GnomeTerminal, \href{http://yakuake.kde.org/}{yakuake}
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+  \end{columns}
+
+
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Building Nodes}
+      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes.
+        \begin{itemize}
+        \item Westmere + GPU : build-gpu-p
+        \item SandyBridge + GPU : build-gpu-sb-p
+        \end{itemize}
+      \end{block}
+      
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Access}
+       In order to access the file system (/home) remotely from your machine, we recommend:
+        \begin{itemize}
+        \item \textbf{SSHFS} (MacOSX) : \url{http://code.google.com/p/macfuse/}
+        \item \textbf{SSHFS} (Linux) : \url{http://fuse.sourceforge.net/sshfs.html}
+        \item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
+        \item \textbf{Konqueror} (KDE) : type fish://user@host:port
+        \item \textbf{Nautilus} (Gnome) : type sftp://user@host:port
+        \item \textbf{WinSCP} (Windows) : \url{http://winscp.net}
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Transfer with RSYNC (Unix Only)}
+       \textbf{RSYNC} over SSH protocol is the best choice to transfer big data volumes.
+        \begin{itemize}
+        \item Transfer data from your machine to the server:\\ \verb|rsync -avHl  /path/origin/* sshserver:/path/destination/|
+        \item Transfer data from the server to your machine:\\ \verb|rsync -avHl  sshserver:/path/destination/* /path/origin/|
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Remote File System Transfer with scp/sftp (Unix Only)}
+       \textbf{SCP} and \textbf{SFTP} are the most popular software to transfer data across the SSH protocol.
+        \begin{itemize}
+        \item \textbf{SCP}: \verb|scp -pr sshserver:/path/destination/* path/destination/|
+        \item \textbf{SFTP}: \verb|sftp sshserver:/path/destination/* path/destination/|
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Get Involved!}
+       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
+       {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:eresearch-support@auckland.ac.nz}{NeSI Team}.}}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+
+    
  
     \end{column}
   \end{columns}
@@ -424,8 +449,8 @@
 . /etc/profile.d/modules.sh
 module load g09/C.01
 ##########################################################################
-###  Transfering the data to the local disk  ($TMPDIR)
-cd $TMPDIR
+###  Transfering the data to the temporal disk  ($JOB_SCRATCH_DIR)
+cd $JOB_SCRATCH_DIR
 cp -r $HOME/Gaussian/h2o_opt.dat . 
 setenv GAUSS_SCRDIR $TMPDIR
 ##########################################################################
@@ -433,7 +458,7 @@ setenv GAUSS_SCRDIR $TMPDIR
 smpexec g09 < ./h2o_opt.dat > h2ol_opt.log
 ##########################################################################
 ###  Transfering the results to the home directory ($HOME) 
-cp -pr $TMPDIR $HOME/results/
+cp -pr $JOB_SCRATCH_DIR $HOME/results/
         \end{verbatim}
                 \vspace*{-4ex}
       \end{block}
@@ -601,8 +626,8 @@ cp -pr $TMPDIR $HOME/results/
 . /etc/profile.d/modules.sh
 module load gromacs/4.5.4
 ########################################################################## 
-###  Transfering the data to the local disk  ($TMPDIR)
-cd $WORKDIR
+###  Transfering the data to the temporal filesystem ($JOB_SCRATCH_DIR)
+cd $JOB_SCRATCH_DIR
 cp $HOME/Gromacs_9LDT/input/* .
 ########################################################################## 
 ###  Run the Parallel Program
@@ -611,7 +636,7 @@ grompp -f full_vdw.mdp -c 9LDT-pt-md-3.gro -p 9LDT-bu.top -o 9LDT-bu.tpr
 MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
 ########################################################################## 
 ###  Transfering the results to the home directory ($HOME) 
-cp -pr $WORKDIR $HOME/results/
+cp -pr $JOB_SCRATCH_DIR $HOME/results/
         \end{verbatim}
         \vspace*{-4ex}
       \end{block}
