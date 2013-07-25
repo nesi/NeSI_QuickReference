@@ -40,7 +40,7 @@
 \institute[]{
   Center for eResearch - University of Auckland, New Zealand  \\
   Building 409, Rm G21, LG, 24 Symonds Street - (1010) Auckland \\
-  Phone : (+64) 9 373 7599 -  Support list:  \href{mailto:eresearch-support@auckland.ac.nz}{eresearch-support@auckland.ac.nz}
+  Phone : (+64) 9 373 7599 -  Support list:  \href{mailto:support@nesi.org.nz}{support@nesi.org.nz}
 }
 
 % abbreviations
@@ -61,7 +61,7 @@
         \item \textbf{web}: \url{http://www.nesi.org.nz}
         \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CERES/}
         \item \textbf{ganglia}: \url{http://ganglia.uoa.nesi.org.nz}
-        \item \textbf{support} : \href{mailto:eresearch-support@auckland.ac.nz}{eresearch-support@auckland.ac.nz}
+        \item \textbf{support} : \href{mailto:support@nesi.org.nz}{support@nesi.org.nz}
         \end{itemize}
         \vspace*{-1.5cm}
         \hspace*{7cm}
@@ -142,7 +142,7 @@
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Environment Modules}
-      \textbf{Environment Modules} is a very useful to manage environment variables of each application and it is very easy to use. Each module, loads all environment needed by a certain application and its dependencies automatically.
+      \textbf{Environment Modules} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically.
         \begin{itemize}
         \item  \textbf{module avail} - lists available modules
         \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
@@ -206,11 +206,11 @@
       \hline 
       OpenMPI & 1.4,1.6  \\ 
       \hline 
-      MPICH2 & 1.4,1.5  \\ 
+      MPICH2 & 1.5,3.0.4  \\ 
       \hline 
       PlatformMPI & 08.02  \\ 
       \hline 
-      MVAPICH2 & 1.9a2  \\ 
+      MVAPICH2 & 1.4.1p1  \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -237,7 +237,7 @@
            \hline 
            Profile & -p & -pg & -p \\ 
            \hline 
-           Gulftown & -mtarget & -march=corei7  & -tp=nehalem-64 \\ 
+           Westmere & -mtarget & -march=corei7  & -tp=nehalem-64 \\ 
            \hline 
            SandyBridge & -mtarget & -march=corei7-avx  & -tp=sandybridge-64 \\ 
            \hline 
@@ -332,6 +332,11 @@
         \item host: login-01.uoa.nesi.org.nz
         \item port: 22
         \end{itemize}
+       \textbf{Limits}
+        \begin{itemize}
+        \item CPU time: 60 minutes
+        \item Memory : 2GB
+        \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \end{column}
@@ -352,7 +357,7 @@
 
      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Building Nodes}
-      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes.
+      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{CPUTime} and \textbf{16GB} of \textbf{memory}.
         \begin{itemize}
         \item Westmere + GPU : build-gpu-p
         \item SandyBridge + GPU : build-gpu-sb-p
@@ -446,8 +451,8 @@
 . /etc/profile.d/modules.sh
 module load g09/C.01
 ##########################################################################
-###  Transfering the data to the temporal disk  ($SCRATCH_DIR)
-cd $SCRATCH_DIR
+###  Transfering the data to the temporal disk  ($TMP_DIR)
+cd $TMP_DIR
 cp -r $HOME/Gaussian/h2o_opt.dat . 
 setenv GAUSS_SCRDIR $TMP_DIR
 ##########################################################################
@@ -455,7 +460,7 @@ setenv GAUSS_SCRDIR $TMP_DIR
 smpexec g09 < ./h2o_opt.dat > h2ol_opt.log
 ##########################################################################
 ###  Transfering the results to the home directory ($HOME) 
-cp -pr $SCRATCH_DIR $HOME/results/
+cp -pr $TMP_DIR $HOME/results/
         \end{verbatim}
                 \vspace*{-4ex}
       \end{block}
