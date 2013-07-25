@@ -91,7 +91,7 @@
       \begin{center}
       \begin{tabular}{|c|c|c|c|c|}
       \hline 
-      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMemory} & \textbf{GPU} \\ 
+      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMem} & \textbf{GPU} \\ 
       \hline 
       Model & X5660 & E5-2680 & E7-4870 & X5660 (M2090) \\ 
       \hline 
@@ -120,21 +120,17 @@
       \begin{block}{Disk Spaces + Default Quota}
         \vspace*{-2ex}
       \begin{center}
-      \begin{tabular}{|c|c|c|c|c|c|c|}
+      \begin{tabular}{|l|c|c|c|c|c|c|}
       \hline 
       \textbf{FileSystem} & \textbf{Space} & \textbf{Quota} & \textbf{ACL} & \textbf{Backup} & \textbf{Type} & \textbf{Usage}  \\ 
       \hline 
-      \$HOME & 34TB & 30GB & rw & yes & GPFS & Archive \\ 
+      \$HOME & 120TB & 30GB & rw & yes & GPFS & Archive \\ 
       \hline 
-      /share & 134TB & - & ro & yes & GPFS & Archive \\ 
+      /share & 120TB & - & ro & yes & GPFS & Archive \\ 
       \hline 
-      /gpfs1m & 134TB & - & rw & yes & GPFS & Archive \\ 
+      \$TMP\_DIR & 240GB & - & rw & NO & EXT4 & io \\ 
       \hline 
-      /gpfs4m & 34TB & - & rw & yes & GPFS & Archive \\ 
-      \hline 
-      \$TMPDIR & 240GB & - & rw & NO & EXT4 & io \\ 
-      \hline 
-      \$JOB\_SCRATCH\_DIR & 59TB & - & rw & NO & GPFS & io \\ 
+      \$SCRATCH\_DIR & 8.8TB & - & rw & NO & GPFS & io \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -333,8 +329,8 @@
       \begin{block}{OpenSSH Access}
       \textbf{Parameters}
         \begin{itemize}
-        \item HOST: login.uoa.nesi.org.nz
-        \item PORT: 22
+        \item host: login-01.uoa.nesi.org.nz
+        \item port: 22
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -360,6 +356,7 @@
         \begin{itemize}
         \item Westmere + GPU : build-gpu-p
         \item SandyBridge + GPU : build-gpu-sb-p
+        \item SandyBridge + Phi : build-phi-p
         \end{itemize}
       \end{block}
       
@@ -449,16 +446,16 @@
 . /etc/profile.d/modules.sh
 module load g09/C.01
 ##########################################################################
-###  Transfering the data to the temporal disk  ($JOB_SCRATCH_DIR)
-cd $JOB_SCRATCH_DIR
+###  Transfering the data to the temporal disk  ($SCRATCH_DIR)
+cd $SCRATCH_DIR
 cp -r $HOME/Gaussian/h2o_opt.dat . 
-setenv GAUSS_SCRDIR $TMPDIR
+setenv GAUSS_SCRDIR $TMP_DIR
 ##########################################################################
 ###  Run the Parallel Program
 smpexec g09 < ./h2o_opt.dat > h2ol_opt.log
 ##########################################################################
 ###  Transfering the results to the home directory ($HOME) 
-cp -pr $JOB_SCRATCH_DIR $HOME/results/
+cp -pr $SCRATCH_DIR $HOME/results/
         \end{verbatim}
                 \vspace*{-4ex}
       \end{block}
@@ -626,8 +623,8 @@ cp -pr $JOB_SCRATCH_DIR $HOME/results/
 . /etc/profile.d/modules.sh
 module load gromacs/4.5.4
 ########################################################################## 
-###  Transfering the data to the temporal filesystem ($JOB_SCRATCH_DIR)
-cd $JOB_SCRATCH_DIR
+###  Transfering the data to the temporal filesystem ($SCRATCH_DIR)
+cd $SCRATCH_DIR
 cp $HOME/Gromacs_9LDT/input/* .
 ########################################################################## 
 ###  Run the Parallel Program
@@ -636,7 +633,7 @@ grompp -f full_vdw.mdp -c 9LDT-pt-md-3.gro -p 9LDT-bu.top -o 9LDT-bu.tpr
 MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
 ########################################################################## 
 ###  Transfering the results to the home directory ($HOME) 
-cp -pr $JOB_SCRATCH_DIR $HOME/results/
+cp -pr $SCRATCH_DIR $HOME/results/
         \end{verbatim}
         \vspace*{-4ex}
       \end{block}
