@@ -431,7 +431,7 @@
         \begin{verbatim}
 #!/bin/bash 
 # Gaussian SubmitScript 
-# Optimized for run parallel job of 12 Cores in NeSI (Pandora-Gulftown)
+# Optimized for run parallel job of 12 Cores in NeSI Pan Cluster
 ##########################################################################
 #@ job_name = Gaussian
 #@ class = default
@@ -448,7 +448,7 @@
 #@ environment = COPY_ALL,OMP_NUM_THREADS=12
 #@ queue
 ########################################################################## 
-###  Load the Enviroment Modules for Gromacs 4.5.4
+###  Load the Enviroment Modules for Gaussian G09 C.01
 . /etc/profile.d/modules.sh
 module load g09/C.01
 ##########################################################################
@@ -607,7 +607,7 @@ cp -pr $TMP_DIR $HOME/results/
         \begin{verbatim}
 #!/bin/bash 
 # GROMACS SubmitScript 
-# Optimized for run parallel job of 64 Cores in NeSI (Pandora-SandyBridge)
+# Optimized for run parallel job of 64 Cores in NeSI Pan Cluster - SandyBridge Architecture
 ##########################################################################
 #@ job_name = Gromacs_9LDT-64
 #@ class = default
