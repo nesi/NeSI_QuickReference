@@ -358,7 +358,7 @@
 
      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Building Nodes}
-      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{CPUTime} and \textbf{16GB} of \textbf{memory}.
+      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{CPUTime} and \textbf{70GB} of \textbf{memory}.
         \begin{itemize}
         \item Westmere + GPU : build-gpu-p
         \item SandyBridge + GPU : build-gpu-sb-p
@@ -431,7 +431,7 @@
         \begin{verbatim}
 #!/bin/bash 
 # Gaussian SubmitScript 
-# Optimized for run parallel job of 12 Cores in NeSI Pan Cluster
+# Optimized for run parallel job of 8 Cores in NeSI Pan Cluster
 ##########################################################################
 #@ job_name = Gaussian
 #@ class = default
@@ -444,8 +444,8 @@
 #@ error = $(home)/$(job_name).err
 #@ job_type = serial
 #@ resources = ConsumableMemory(2048mb) ConsumableVirtualMemory(2048mb)
-#@ parallel_threads = 12
-#@ environment = COPY_ALL,OMP_NUM_THREADS=12
+#@ parallel_threads = 8
+#@ environment = COPY_ALL,OMP_NUM_THREADS=8
 #@ queue
 ########################################################################## 
 ###  Load the Enviroment Modules for Gaussian G09 C.01
@@ -605,41 +605,42 @@ cp -pr $TMP_DIR $HOME/results/
       \begin{block}{SubmitScript Example : MPI job using Shared FileSystem}
               \vspace*{-3ex}
         \begin{verbatim}
-#!/bin/bash 
-# GROMACS SubmitScript 
-# Optimized for run parallel job of 64 Cores in NeSI Pan Cluster - SandyBridge Architecture
+#!/bin/bash
+# NAMD SubmitScript
+# Optimized for run parallel job of 512 Cores at NeSI (Pandora-SandyBridge)
 ##########################################################################
-#@ job_name = Gromacs_9LDT-64
+#@ job_name = NAMD_TEST
 #@ class = default
 #@ group = nesi
 #@ notification = never
 #@ account_no = uoa
-#@ wall_clock_limit = 6:00:00
+#@ wall_clock_limit = 00:59:00
 #@ resources = ConsumableMemory(4096mb) ConsumableVirtualMemory(4096mb)
 #@ job_type = MPICH
-#@ initialdir = $(home)
+#@ blocking = unlimited
+#@ node_usage = not_shared
 #@ output = $(job_name).$(jobid).out
 #@ error = $(job_name).$(jobid).err
 #@ requirements = (Feature=="sandybridge")
-#@ tasks_per_node = 64
-#@ node = 4
+#@ initialdir = /share/test/NAMD/apoa1
+#@ total_tasks = 512
 #@ queue
-########################################################################## 
-###  Load the Enviroment Modules for Gromacs 4.5.4
+##########################################################################
+###  Load the Enviroment
+ulimit -m $((4096*1024)) -v $((4096*1024))
 . /etc/profile.d/modules.sh
-module load gromacs/4.5.4
-########################################################################## 
-###  Transfering the data to the temporal filesystem ($SCRATCH_DIR)
+module load NAMD/2.9-sandybridge
+##########################################################################
+###  The files will be allocated in the shared FS ($SCRATCH_DIR)
+cp -pr /share/test/NAMD/apoa1/* $SCRATCH_DIR
 cd $SCRATCH_DIR
-cp $HOME/Gromacs_9LDT/input/* .
-########################################################################## 
+##########################################################################
 ###  Run the Parallel Program
 export OMP_NUM_THREADS=1
-grompp -f full_vdw.mdp -c 9LDT-pt-md-3.gro -p 9LDT-bu.top -o 9LDT-bu.tpr
-MPIRUN  mdrun_mpi -v -s 9LDT-bu.tpr -o 9LDT-bu.trr > mdrun.out 
-########################################################################## 
-###  Transfering the results to the home directory ($HOME) 
-cp -pr $SCRATCH_DIR $HOME/results/
+MPIRUN namd2 apoa1.namd
+##########################################################################
+###  Transfering the results to the home directory ($HOME)
+#cp -pr $SCRATCH_DIR $HOME/OUT/namd
         \end{verbatim}
         \vspace*{-4ex}
       \end{block}
