@@ -1,4 +1,4 @@
-NeSI_UoA_QuickReference
+NeSI_QuickReference
 =======================
 
 Quick Reference Guide to the High Performance Computer Environments @ NeSI
