@@ -600,15 +600,32 @@ srun binary_array $SLURM_ARRAY_TASK_ID
 
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Environment Modules}
-      \textbf{Environment Modules} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically.
+      \begin{block}{User Environment}
+      \textbf{LMOD} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically. The command line is fully compatible with the previous \textbf{Environment Modules}, and it provides simple short-cuts and advanced features.\\
+      Syntax : \verb|module [options] sub-command [args ...]|\\
+      \textbf{Loading/Unloading sub-commands}
         \begin{itemize}
-        \item  \textbf{module avail} - lists available modules
-        \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
-        \item  \textbf{module load module\_name} - loads the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module unload module\_name } - unload  the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module list} - list all modules currently loaded.
+        \item  \textbf{load $|$ add} load module(s)
+        \item  \textbf{del $|$ unload} Remove module(s), do not complain if not found
+        \item  \textbf{purge} unload all modules
+        \item  \textbf{update} reload all currently loaded modules.
         \end{itemize}
+       \textbf{Listing / Searching sub-commands}
+        \begin{itemize}
+        \item  \textbf{list} List loaded modules
+        \item  \textbf{avail $|$ av} List available modules
+        \item  \textbf{avail $|$ av string} List available modules that contain "string".
+        \item  \textbf{spider} List all possible modules
+        \item  \textbf{spider module} List all possible version of that module file
+        \item  \textbf{spiderstring} List all module that contain the "string".
+        \end{itemize}
+       \textbf{Short-cuts}
+       \begin{itemize}
+        \item \textbf{ml} - means: module list
+        \item \textbf{ml foo bar} - means: module load foo bar
+        \item \textbf{ml -foo -bar baz goo}- means: module unload foo bar; module load baz goo;
+        \end{itemize}
+        More information at \url{http://www.tacc.utexas.edu/tacc-projects/lmod}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       
