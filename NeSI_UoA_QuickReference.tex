@@ -36,10 +36,9 @@
 \usepackage{ifthen}
 
 \title{\huge Quick Reference Guide to the High Performance Computer Environments @ Pan Cluster}
-\author{New Zealand eScience Infrastructure}
+\author{New Zealand eScience Infrastructure (\href{https://www.nesi.org.nz/}{NeSI})}
 \institute[]{
-  New Zealand eScience Infrastructure (\href{https://www.nesi.org.nz/}{NeSI}) \\
-  a partnership for all New Zealand researchers delivered by \\
+NeSI is a partnership for all New Zealand researchers delivered by 
   \href{http://www.eresearch.auckland.ac.nz/}{The University of Auckland}, \href{http://www.niwa.co.nz/our-services/hpcf}{NIWA}, \href{http://www.bluefern.canterbury.ac.nz/}{University of Canterbury}, \\
   \href{http://www.landcareresearch.co.nz/}{Landcare Research}, \href{http://www.otago.ac.nz/}{Otago University} and \href{http://msi.govt.nz/}{MBIE}
 }
@@ -60,7 +59,7 @@
       \begin{block}{Contact Information}
         \begin{itemize}
         \item \textbf{web}: \url{http://www.nesi.org.nz}
-        \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CERES/}
+        \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CER/}
         \item \textbf{ganglia}: \url{http://ganglia.uoa.nesi.org.nz}
         \item \textbf{support} : \href{mailto:support@nesi.org.nz}{support@nesi.org.nz}
         \end{itemize}
@@ -87,28 +86,61 @@
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Hardware Information}
+      \begin{block}{NeSI Pan Cluster}
         \vspace*{-2ex}
       \begin{center}
-      \begin{tabular}{|c|c|c|c|c|}
+      \begin{tabular}{|c|c|c|c|}
       \hline 
-      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMem} & \textbf{GPU} \\ 
+      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMem} \\ 
       \hline 
-      Model & X5660 & E5-2680 & E7-4870 & X5660 (M2090) \\ 
+      Model & X5660 & E5-2680 & E7-4870 \\ 
       \hline 
-      Clock Speed & 2.8 GHz & 2.7 GHz & 2.4GHz & 2.8 (1.3)GHz\\ 
+      Clock Speed & 2.8 GHz & 2.7 GHz & 2.4GHz \\ 
       \hline 
-      Cache & 12MB & 20MB & 30MB & 12MB\\ 
+      Cache & 12MB & 20MB & 30MB \\ 
       \hline 
-      Intel QPI speed & 6.4GT/s & 8 GT/s & 6.4GT/ & 6.4GT/s\\ 
+      Intel QPI speed & 6.4GT/s & 8 GT/s & 6.4GT/ \\ 
       \hline 
-      Cores/socket & 6 & 8 & 10 & 6(512)\\ 
+      Cores/socket & 6 & 8 & 10 \\ 
       \hline       
-      Cores/node & 12 & 16 & 40 & 12(1024)\\ 
+      Cores/node & 12 & 16 & 40 \\ 
       \hline 
-      Mem/node & 96GB & 128GB & 512GB & 96GB(6GB)\\ 
+      Mem/node & 96GB & 128GB & 512GB \\ 
       \hline 
-      GFLOPS/node & 134.4 & 172.8 & 384.0 & 134.4 (1330DP)\\ 
+      GFLOPS/node & 134.4 & 345.6 & 384.0 \\ 
+      \hline 
+      \# nodes & 76 & 194 & 4 \\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{NeSI Pan Cluster - Co-Processors}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|}
+      \hline 
+      \textbf{Architecture} & \textbf{Nvidia Fermi} & \textbf{Nvidia Kepler} & \textbf{Intel Phi} \\ 
+      \hline 
+      Main CPU                  &  X5660/E5-2680       &  E5-2680                   &  E5-2680 \\
+      \hline 
+      Model                       &  M2090                     &   K20X                       &  5110P \\ 
+      \hline 
+      Clock Speed             &  1.3GHz                    &  0.732GHz                      &  1.053GHz\\ 
+      \hline 
+      Cores/Dev.             & 512                            & 2688                           & 60 (240) \\ 
+      \hline       
+      Dev./node              &  2                             &   2                                &  2  \\ 
+      \hline 
+      Mem/Dev.             & 6GB                          & 6GB                               & 8GB  \\ 
+      \hline 
+      TFLOPS/Dev         & 1.33                          & 1.17                              & 1.01 \\ 
+      \hline 
+      \# nodes               & 16                             & 5                                 & 2 \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -133,6 +165,8 @@
       \hline 
       \$SCRATCH\_DIR & 8.8TB & - & rw & NO & GPFS & io \\ 
       \hline 
+      \$SHM\_DIR & Mem & - & rw & NO & RamFS & io \\ 
+      \hline 
       \end{tabular} 
       \end{center}
         \vspace*{-2ex}
@@ -141,18 +175,7 @@
  
  
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Environment Modules}
-      \textbf{Environment Modules} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically.
-        \begin{itemize}
-        \item  \textbf{module avail} - lists available modules
-        \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
-        \item  \textbf{module load module\_name} - loads the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module unload module\_name } - unload  the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module list} - list all modules currently loaded.
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
  
 
      \end{column}
@@ -275,46 +298,14 @@
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Slurm Commands}
-        \begin{itemize}
-        \item  \textbf{sbatch} sends a new job to the scheduler for execution
-        \item  \textbf{sinfo} show the current list of classes.
-        \item  \textbf{squeue} returns queue information 
-         \begin{itemize}
-              \item \verb|squeue -l -j <job id>| gives extended job record information.
-              \item \verb|squeue -u <user name>| lists only jobs initiated by the user.
-         \end{itemize}
-        \item \textbf{scancel} kills a queued job: \verb|scancel <job id>|
-        \end{itemize}
-       More information about Slurm in the NeSI Slurm User Guide : \url{https://wiki.auckland.ac.nz/display/CER/Slurm+User+Guide}
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Get Involved!}
+       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
+       {\Large We would like to encourage you to send suggestions and feedback to the NeSI Team (\url{support@nesi.org.nz}).}}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Limits}
-        \vspace*{-2ex}
-      \begin{center}
-      \begin{tabular}{|c|c|c|}
-      \hline 
-      \textbf{Name} & \textbf{MaxJobCPU} & \textbf{Description} \\ 
-      \hline 
-      small1h & 41 &  Jobs running for under 1 hour (high priority)\\ 
-      \hline 
-      small6h & 41 & Jobs running for under 6 hours  (high priority)\\ 
-      \hline 
-      medium & 12500 &  Jobs running for under 1 week  (medium priority)\\ 
-      \hline 
-      long & unlimited &  Jobs running for longer than a week  (low priority)\\ 
-      \hline 
-      bigmem & unlimited &  Jobs that needs more than 12GB/core\\ 
-      \hline 
-      \end{tabular} 
-      \end{center}
-        \vspace*{-2ex}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
      \end{column}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -323,55 +314,39 @@
     
     \begin{column}{.32\linewidth}
     \vskip-2ex
-    \begin{columns}[t]
-    \begin{column}{.38\linewidth}
+%    \begin{columns}[t]
+%    \begin{column}{.38\linewidth}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{OpenSSH Access}
+      \begin{block}{OpenSSH Access : Login Node}
+      The login node is not for running jobs, it is only for file management and job submission.\\
       \textbf{Parameters}
         \begin{itemize}
         \item host: login-01.uoa.nesi.org.nz
         \item port: 22
         \end{itemize}
-       \textbf{Limits}
-        \begin{itemize}
-        \item CPU time: 60 minutes
-        \item Memory : 2GB
-        \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \end{column}
-     \hspace*{-0.6cm}
-     \begin{column}{.56\linewidth}
+%      \end{column}
+%     \hspace*{-0.6cm}
+%     \begin{column}{.56\linewidth}
+     
+%      \end{column}
+%  \end{columns}
+
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Suggested Software}
         \begin{itemize}
-        \item Windows: \href{http://mobaxterm.mobatek.net/}{mobaxterm}, \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/}{Putty}, \href{http://www.bitvise.com/tunnelier}{Bitvise Tunnelier}
-        \item MacOSX: Terminal(Included in the OS), \href{http://www.iterm2.com/}{iTerm2}
-        \item Linux: \href{http://konsole.kde.org/}{Konsole}, GnomeTerminal, \href{http://yakuake.kde.org/}{yakuake}
+        \item \textbf{mobaxterm} (Windows) : \url{http://mobaxterm.mobatek.net} 
+        \item \textbf{Putty} (Windows) : \url{http://www.chiark.greenend.org.uk/~sgtatham/putty/}
+        \item \textbf{Terminal} (MacOSX) :  (Included in the OS)
+        \item \textbf{iTerm2} (MacOSX) : \url{http://www.iterm2.com}
+        \item \textbf{Konsole} (Linux) : \url{http://konsole.kde.org}
+        \item \textbf{GnomeTerminal} (Linux) : \url{https://wiki.gnome.org/Apps/Terminal}
+        \item \textbf{yakuake} (Linux) : \url{http://yakuake.kde.org}
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \end{column}
-  \end{columns}
-
-
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{interactive sessions}
-      The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
-	 \begin{verbatim}
-Usage: interactive [-A] [-a] [-c] [-m] [-J]
-Mandatory arguments:
-	 -A: account
-Optional arguments:
-	 -a: architecture (default: wm, values sb=SandyBridge wm=Westmere)
-	 -c: number of CPU cores (default: 1)
-	 -m: amount of memory (GB) per core (default: 1 [GB])
-	 -J: job name
-example : interactive -A nesi99999 -a wm -c 4 -J MyInteractiveJob
-	\end{verbatim} 
-      \end{block}
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Remote File System Access}
@@ -407,16 +382,14 @@ example : interactive -A nesi99999 -a wm -c 4 -J MyInteractiveJob
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- 
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Get Involved!}
-       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
-       {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:support@nesi.org.nz}{NeSI Team}.}}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Recommended Best Practices}
+      \begin{itemize}
+         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
+         \item Ask for the minimum nodes for the specified number of cores for the very large jobs. It will take more time to enter in execution but will finish with less walltime.
+        \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
-
-    
  
     \end{column}
   \end{columns}
@@ -428,6 +401,83 @@ example : interactive -A nesi99999 -a wm -c 4 -J MyInteractiveJob
   \begin{columns}[t]
     \begin{column}{.35\linewidth}
 
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Slurm Commands}
+        \begin{itemize}
+        \item  \textbf{sbatch} - submits a script job.
+        \item \textbf{scancel} - cancels a running or pending job.
+	    \item \textbf{sinfo} - provides information on partitions and nodes.
+	    \item \textbf{sview} - GUI to view job, node and partition information.
+	    \item \textbf{smap} - CLI to view job, node and partition information.
+        \item  \textbf{squeue} - shows the status of jobs. 
+         \begin{itemize}
+              \item \verb|squeue -l -j <job id>| gives extended job record information.
+              \item \verb|squeue -u <user name>| lists only jobs initiated by the user.
+        \end{itemize}
+        \item \textbf{sbcast} - transfer file to a compute nodes allocated to a job.
+        \item \textbf{interactive} - opens an interactive job session.
+	    \item \textbf{sattach} - connects stdin/out/err for an existing job or job step.
+        \end{itemize}
+       More information about Slurm in the NeSI Slurm User Guide : \url{https://wiki.auckland.ac.nz/display/CER/Slurm+User+Guide}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Slurm Submit Script Syntax}
+        \begin{itemize}
+        \item \verb|-A uoa99999| User account (i.e. uoaXXXXX or nesiXXXXX)
+        \item \verb|--mem-per-cpu=8132| = memory/cpu (in MB)
+        \item \verb|-J My\_Job\_Name| Sets the job name
+        \item \verb|--mail-type=ALL| Specifies under which conditions Slurm will send out email notifications to the specified address about the state of the job:
+        \begin{itemize}
+            \item ALL - notifies about every change in the job status.
+            \item BEGIN - notifies when the job is activated.
+            \item END - notifies when the job ends.
+            \item FAIL - notifies only if the job fails.
+            \item REQUEUE - notifies only if the job is requeued.
+        \end{itemize}
+        \item \verb|--mail-user=username@nesi.org.nz| user email
+        \item \verb|--cpus-per-task=8| Sets the number of cores to be allocated for each task
+        \item \verb|--gres=gpu:1| Specifies what consumable resources the job requires to run per task:
+        \begin{itemize}
+            \item gpu:N - where N is the number of GPU devices
+            \item mic:N - where N is the number of MIC devices
+        \end{itemize}
+        \item \verb|--ntasks-per-node=16| specifies the total number of tasks to be run on each available node.
+        \item \verb|--ntasks=96| specifies how many tasks (cores) are to be run in total
+        \item \verb|--time=01:00:00| Sets the limit for the elapsed time for which a job can run
+        \item \verb|-C sb| Requires an specific hardware architecture (sb=Sandybridge,wm=Westmere)
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Interactive sessions}
+      The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
+	 \begin{verbatim}
+Usage: interactive [-A] [-a] [-c] [-m] [-J]
+Mandatory arguments:
+	 -A: account
+Optional arguments:
+	 -a: architecture (default: wm, values sb=SandyBridge wm=Westmere)
+	 -c: number of CPU cores (default: 1)
+	 -m: amount of memory (GB) per core (default: 1 [GB])
+	 -J: job name
+example : interactive -A nesi99999 -a wm -c 4 -J MyInteractiveJob
+	\end{verbatim} 
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.3\linewidth}
+    
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Submit Script Example : Serial}
@@ -491,6 +541,7 @@ srun mpi_binary
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
 #SBATCH --cpus-per-task=8   # 8 OpenMP Threads
 #SBATCH --nodes=1           # number nodes
+#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun binary_hybrid
         \end{verbatim}
                 \vspace*{-4ex}
@@ -509,8 +560,8 @@ srun binary_hybrid
 #SBATCH --ntasks-per-node=2 # number of tasks per node
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
 #SBATCH --cpus-per-task=4   # 4 OpenMP Threads
-# The following line will request GPUs per node. In this particular 
-# example, it means 4 GPUs in total.
+# The following line will request GPUs per node. In this  
+# particular example, it means 4 GPUs in total.
 #SBATCH --gres=gpu:2       
 #SBATCH -C kepler
 srun binary_cuda_mpi
@@ -519,53 +570,6 @@ srun binary_cuda_mpi
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \end{column}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    \begin{column}{.3\linewidth}
-    
- 
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Submit Script Syntax}
-        \begin{itemize}
-        \item \textbf{\-A uoa99999} User account (uoaXXXXX, uocXXXXX, uooXXXXX, landcareXXXXX or nesiXXXX)
-        \item \textbf{\-\-mem-per-cpu=8132} = memory/cpu (in MB)
-        \item \textbf{-J My\_Job\_Name} Sets the job name
-        \item \textbf{\-\-mail-type=ALL} Specifies under which conditions Slurm will send out email notifications to the specified address about the state of the job:
-        \begin{itemize}
-            \item ALL - notifies about every change in the job status
-            \item START - notifies when the job is activated
-            \item END - notifies when the job ends
-            \item ERROR - notifies only if the job fails
-            \item NEVER - never send any notifications
-        \end{itemize}
-        \item \textbf{--mail-user=username@nesi.org.nz} user email
-        \item \textbf{--cpus-per-task=8} Sets the number of cores to be allocated for each task
-        \item \textbf{--gres=gpu:1|2} Specifies what consumable resources the job requires to run per task:
-        \begin{itemize}
-            \item gpu:1|2 - default 1 GPU per node
-            \item mic:1|2 - default 1 Intel Xeon Phi per node
-        \end{itemize}
-        %\item \textbf{requirements} Can be (Feature=="sandybridge") or (Feature=="westmere")
-        \item \textbf{\-\-ntasks-per-node=16} specifies the total number of tasks (cores) to be run on each available node.
-        \item \textbf{\-\-ntasks=96} specifies how many tasks (cores) are to be run in total
-        \item \textbf{\-\-time=01:00:00} Sets the limit for the elapsed time for which a job can run
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Recommended Best Practices}
-      \begin{itemize}
-         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
-         \item Ask for the minimum nodes for the specified number of cores for the very large jobs. It will take more time to enter in execution but will finish with less walltime.
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
 
     \end{column}
 
@@ -595,16 +599,15 @@ srun binary_array $SLURM_ARRAY_TASK_ID
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Grisu Command Line Interface (griclish)}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Environment Modules}
+      \textbf{Environment Modules} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically.
         \begin{itemize}
-        \item \verb|help| - displays help menu
-        \item \verb|help <keyword>| - displays help about a keyword
-        \item \verb|attach <path_to_file>| - attaches a file to the next job
-        \item \verb|set <property> <value>| - sets a value for the next job
-        \item \verb|submit <command_to_run>| - submits a job
-        \item \verb|print jobs| - lists all jobs and their statuses
-        \item \verb|print job <jobname>| - displays details about a job
+        \item  \textbf{module avail} - lists available modules
+        \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
+        \item  \textbf{module load module\_name} - loads the module with name \textit{module\_name} and its dependencies. 
+        \item  \textbf{module unload module\_name } - unload  the module with name \textit{module\_name} and its dependencies. 
+        \item  \textbf{module list} - list all modules currently loaded.
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
