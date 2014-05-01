@@ -157,13 +157,15 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \hline 
       \textbf{FileSystem} & \textbf{Space} & \textbf{Quota} & \textbf{ACL} & \textbf{Backup} & \textbf{Type} & \textbf{Usage}  \\ 
       \hline 
-      \$HOME & 120TB & 30GB & rw & yes & GPFS & Archive \\ 
+      \$HOME & 120TB & 2GB & rw & yes & GPFS & Archive \\ 
+      \hline 
+      /project & 120TB & 30GB & rw & yes & GPFS & Archive \\ 
       \hline 
       /share & 120TB & - & ro & yes & GPFS & Archive \\ 
       \hline 
       \$TMP\_DIR & 240GB & - & rw & NO & EXT4 & io \\ 
       \hline 
-      \$SCRATCH\_DIR & 8.8TB & - & rw & NO & GPFS & io \\ 
+      \$SCRATCH\_DIR & 13TB & - & rw & NO & GPFS & io \\ 
       \hline 
       \$SHM\_DIR & Mem & - & rw & NO & RamFS & io \\ 
       \hline 
@@ -194,7 +196,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \begin{center}
       \begin{tabular}{|c|c|c|c|}
       \hline 
-      \textbf{Compiler} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
+      \textbf{Language} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
       \hline 
       Fortran77 & ifort & g77 & pgf77 \\ 
       \hline 
@@ -226,9 +228,9 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \hline 
       \textbf{MPI} & \textbf{version} \\ 
       \hline 
-      Intel MPI & 4.1.0.024  \\ 
+      Intel MPI & 4.1.0,4.1.1  \\ 
       \hline 
-      OpenMPI & 1.4,1.6  \\ 
+      OpenMPI & 1.4,1.6,1.8  \\ 
       \hline 
       MPICH2 & 1.5,3.0.4  \\ 
       \hline 
@@ -317,7 +319,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
 %    \begin{columns}[t]
 %    \begin{column}{.38\linewidth}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{OpenSSH Access : Login Node}
+      \begin{block}{SSH Access : Login Node}
       The login node is not for running jobs, it is only for file management and job submission.\\
       \textbf{Parameters}
         \begin{itemize}
@@ -354,7 +356,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
         \begin{itemize}
         \item \textbf{SSHFS} (MacOSX) : \url{http://code.google.com/p/macfuse/}
         \item \textbf{SSHFS} (Linux) : \url{http://fuse.sourceforge.net/sshfs.html}
-        \item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
+        %\item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
         \item \textbf{Konqueror} (KDE) : type fish://user@host:port
         \item \textbf{Nautilus} (Gnome) : type sftp://user@host:port
         \item \textbf{WinSCP} (Windows) : \url{http://winscp.net}
@@ -386,7 +388,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \begin{block}{Recommended Best Practices}
       \begin{itemize}
          \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
-         \item Ask for the minimum nodes for the specified number of cores for the very large jobs. It will take more time to enter in execution but will finish with less walltime.
+         \item In order to improve the scalability of your MPI code, we suggest to minimise the number of nodes to be used. The \verb|--nodes=N-M| Slurm option, will define the minimum (N) and the maximum (M) number of nodes.
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -408,7 +410,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
         \item  \textbf{sbatch} - submits a script job.
         \item \textbf{scancel} - cancels a running or pending job.
 	    \item \textbf{sinfo} - provides information on partitions and nodes.
-	    \item \textbf{sview} - GUI to view job, node and partition information.
+	    \item \textbf{sview} - GUI to view job, node and partition information (ssh -X option required).
 	    \item \textbf{smap} - CLI to view job, node and partition information.
         \item  \textbf{squeue} - shows the status of jobs. 
          \begin{itemize}
@@ -426,17 +428,19 @@ NeSI is a partnership for all New Zealand researchers delivered by
      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Slurm Submit Script Syntax}
         \begin{itemize}
-        \item \verb|-A uoa99999| User account (i.e. uoaXXXXX or nesiXXXXX)
+        \item \verb|-A uoa99999| User account (i.e. nesiXXXXX, landcareXXXXX, uooXXXXX,uocXXXXX)
         \item \verb|--mem-per-cpu=8132| = memory/cpu (in MB)
         \item \verb|-J My_Job_Name| Sets the job name
-        \item \verb|--mail-type=ALL| Specifies under which conditions Slurm will send out email notifications to the specified address about the state of the job:
-        \begin{itemize}
-            \item ALL - notifies about every change in the job status.
-            \item BEGIN - notifies when the job is activated.
-            \item END - notifies when the job ends.
-            \item FAIL - notifies only if the job fails.
-            \item REQUEUE - notifies only if the job is requeued.
-        \end{itemize}
+        \item \verb|-o test-%j.%N.out| name of output file (default is slurm-jobid.out)
+        \item \verb|-e test-%j.%N.err| name of error file (default is slurm-jobid.err)
+        \item \verb|--mail-type=ALL| Specifies under which conditions Slurm will send out email notifications to the specified address about the state of the job (ALL, BEGIN, END, FAIL, REQUEUE).
+%        \begin{itemize}
+%            \item ALL - notifies about every change in the job status.
+%            \item BEGIN - notifies when the job is activated.
+%            \item END - notifies when the job ends.
+%            \item FAIL - notifies only if the job fails.
+%            \item REQUEUE - notifies only if the job is requeued.
+%        \end{itemize}
         \item \verb|--mail-user=username@nesi.org.nz| user email
         \item \verb|--cpus-per-task=8| Sets the number of cores to be allocated for each task
         \item \verb|--gres=gpu:1| Specifies what consumable resources the job requires to run per task:
@@ -456,7 +460,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \begin{block}{Interactive sessions}
       The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
 	 \begin{verbatim}
-Usage: interactive [-A] [-a] [-c] [-m] [-J]
+Usage: interactive [-A] [-a] [-c] [-m] [-J] [-e]
 Mandatory arguments:
 	 -A: account
 Optional arguments:
@@ -464,7 +468,9 @@ Optional arguments:
 	 -c: number of CPU cores (default: 1)
 	 -m: amount of memory (GB) per core (default: 1 [GB])
 	 -J: job name
-example : interactive -A nesi99999 -a wm -c 4 -J MyInteractiveJob
+	 -e: binary that you want to run interactively
+example : interactive -A nesi99999
+example : interactive -A nesi99999 -a wm -c 4 -e "MyBinary MyOptions"
 	\end{verbatim} 
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
