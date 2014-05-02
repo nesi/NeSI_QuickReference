@@ -442,17 +442,15 @@ NeSI is a partnership for all New Zealand researchers delivered by
 %            \item REQUEUE - notifies only if the job is requeued.
 %        \end{itemize}
         \item \verb|--mail-user=username@nesi.org.nz| user email
-        \item \verb|--cpus-per-task=8| Sets the number of cores to be allocated for each task
-        \item \verb|--gres=gpu:1| Specifies what consumable resources the job requires to run per task:
-        \begin{itemize}
-            \item gpu:N - where N is the number of GPU devices
-            \item mic:N - where N is the number of MIC devices
-        \end{itemize}
+        \item \verb|--cpus-per-task=8| Sets the number of cores to be allocated for each task.
+        \item \verb|--gres=gpu:1| - Specifies the number of GPU devices requested.
+        \item \verb|--gres=mic:1| - Specifies the number of Intel Xeon Phi Co-Processor devices requested.
         \item \verb|--ntasks-per-node=16| specifies the total number of tasks to be run on each available node.
         \item \verb|--ntasks=96| specifies how many tasks (cores) are to be run in total
         \item \verb|--time=01:00:00| Sets the limit for the elapsed time for which a job can run
         \item \verb|--nodes=N-M| Defines the minimum (N) and the maximum (M) number of nodes.
         \item \verb|-C sb| Requires an specific hardware architecture (sb=Sandybridge,wm=Westmere)
+        \item \verb|--exclusive| Requires exclusive execution
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -460,6 +458,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Interactive sessions}
       The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
+      \vspace*{-0.2cm}
 	 \begin{verbatim}
 Usage: interactive [-A] [-a] [-c] [-m] [-J] [-e]
 Mandatory arguments:
