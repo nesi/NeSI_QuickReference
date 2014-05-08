@@ -55,7 +55,6 @@ NeSI is a partnership for all New Zealand researchers delivered by
     \begin{column}{.32\linewidth}
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
       \begin{block}{Contact Information}
         \begin{itemize}
         \item \textbf{web}: \url{http://www.nesi.org.nz}
@@ -67,6 +66,16 @@ NeSI is a partnership for all New Zealand researchers delivered by
         \hspace*{7cm}
         \includegraphics[width=1.4cm]{img/qrcode.png} 
       \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Recommended Best Practices}
+      \begin{itemize}
+         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
+         \item In order to improve the scalability of your MPI code, we suggest to minimise the number of nodes to be used. The \verb|--nodes=N-M| Slurm option, will define the minimum (N) and the maximum (M) number of nodes.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Useful Quick References}
@@ -75,10 +84,10 @@ NeSI is a partnership for all New Zealand researchers delivered by
         \begin{itemize}
         \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/vi+Quick+Reference.pdf}{VI Quick Reference}
         \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/Bash+Quick+Reference.pdf}{BASH Quick Reference} 
-        \item \href{https://wiki.auckland.ac.nz}{Linux Quick Reference}
-        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-FortranCard.pdf}{OpenMP Fortran Syntax}
-        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-CCard.pdf}{OpenMP 3.1 API C/C++ Syntax}
-        \item \href{https://wiki.auckland.ac.nz}{MPI Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/65014423/fwunixref.pdf?version=1&modificationDate=1399584680387&api=v2}{Linux Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/OpenMP3.1-FortranCard.pdf?version=1&modificationDate=1399506093589&api=v2}{OpenMP Fortran Syntax}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/OpenMP3.1-CCard.pdf?version=1&modificationDate=1399506057930&api=v2}{OpenMP 3.1 API C/C++ Syntax}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/mpi-quick-ref.pdf?version=1&modificationDate=1399506030365&api=v2}{MPI Quick Reference}
         \end{itemize}
         \end{multicols}
         \vspace*{-3ex}
@@ -384,15 +393,48 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    \vskip-2ex
+    \begin{columns}[t]
+     \hspace*{+0.01cm}
+    \begin{column}{.48\linewidth}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Recommended Best Practices}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Bash Shortcuts}
       \begin{itemize}
-         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
-         \item In order to improve the scalability of your MPI code, we suggest to minimise the number of nodes to be used. The \verb|--nodes=N-M| Slurm option, will define the minimum (N) and the maximum (M) number of nodes.
+         \item Ctrl+c - halts the current command.
+         \item Ctrl+z - stops the current command.
+         \item Ctrl+d - log out of current session.
+         \item Ctrl+k - Delete from the cursor to the end of the line.
+         \item Ctrl+w - Delete from the cursor to the start of the word.
+         \item Ctrl+u - Delete from the cursor to the beginning of the line.
+         \item Ctrl+r - reverse search to bash history.
+         \item !! - repeats the last command.
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+     \hspace*{-0.8cm}
+     \begin{column}{.49\linewidth}
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Process management}
+      \begin{itemize}
+         \item ps - display all active processes.
+         \item top - display all running processes.
+         \item kill pid - kill process id pid.
+         \item killall proc - kill all processes named proc.
+         \item bg - lists stopped or background jobs.
+         \item bg n - resume job n in the background.
+         \item fg - brings the most recent job to foreground.
+         \item fg n - brings job n to the foreground.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+  \end{columns}
+   
+
     \end{column}
   \end{columns}
 \end{frame}
