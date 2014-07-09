@@ -512,7 +512,6 @@ Optional arguments:
 	 -J: job name
 	 -e: binary that you want to run interactively
 example : interactive -A nesi99999
-example : interactive -A nesi99999 -a wm -c 4 -e "MyBinary MyOptions"
 	\end{verbatim} 
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -536,7 +535,6 @@ example : interactive -A nesi99999 -a wm -c 4 -e "MyBinary MyOptions"
 #SBATCH -A uoa99999         # Project Account
 #SBATCH --time=01:00:00     # Walltime
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
-#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun serial_binary
         \end{verbatim}
                 \vspace*{-4ex}
@@ -553,7 +551,6 @@ srun serial_binary
 #SBATCH --time=01:00:00     # Walltime
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
 #SBATCH --cpus-per-task=8   # 8 OpenMP Threads
-#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun openmp_binary
         \end{verbatim}
                 \vspace*{-4ex}
@@ -570,7 +567,6 @@ srun openmp_binary
 #SBATCH --time=01:00:00     # Walltime
 #SBATCH --ntasks=2          # number of tasks
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
-#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun mpi_binary
         \end{verbatim}
                 \vspace*{-4ex}
@@ -589,7 +585,6 @@ srun mpi_binary
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
 #SBATCH --cpus-per-task=8   # 8 OpenMP Threads
 #SBATCH --nodes=1           # number nodes
-#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun binary_hybrid
         \end{verbatim}
                 \vspace*{-4ex}
@@ -639,7 +634,6 @@ srun binary_cuda_mpi
 #SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
 #SBATCH --cpus-per-task=4   # 4 OpenMP Threads
 #SBATCH --array=1-1000      # Array definition
-#SBATCH -C sb               # sb=Sandybridge,wm=Westmere
 srun binary_array $SLURM_ARRAY_TASK_ID
         \end{verbatim}
                 \vspace*{-4ex}
