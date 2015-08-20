@@ -98,27 +98,27 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \begin{block}{NeSI Pan Cluster}
         \vspace*{-2ex}
       \begin{center}
-      \begin{tabular}{|c|c|c|c|}
+      \begin{tabular}{|c|c|c|c|c|}
       \hline 
-      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMem} \\ 
+      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{IvyBridge} & \textbf{LargeMem} \\ 
       \hline 
-      Model & X5660 & E5-2680 & E7-4870 \\ 
+      Model & X5660 & E5-2680 &E5-2697 v2 & E7-4870 \\ 
       \hline 
-      Clock Speed & 2.8 GHz & 2.7 GHz & 2.4GHz \\ 
+      Clock Speed & 2.8 GHz & 2.7 GHz & 2.7GHz & 2.4GHz \\ 
       \hline 
-      Cache & 12MB & 20MB & 30MB \\ 
+      Cache & 12MB & 20MB & 30MB & 30MB \\ 
       \hline 
-      Intel QPI speed & 6.4GT/s & 8 GT/s & 6.4GT/ \\ 
+      Intel QPI speed & 6.4GT/s & 8 GT/s & 9.6GT/s & 6.4GT/s \\ 
       \hline 
-      Cores/socket & 6 & 8 & 10 \\ 
+      Cores/socket & 6 & 8 & 12& 10 \\ 
       \hline       
-      Cores/node & 12 & 16 & 40 \\ 
+      Cores/node & 12 & 16 & 24 & 40 \\ 
       \hline 
-      Mem/node & 96GB & 128GB & 512GB \\ 
+      Mem/node & 96GB & 128GB & 128GB/256GB & 512GB \\ 
       \hline 
-      GFLOPS/node & 134.4 & 345.6 & 384.0 \\ 
+      GFLOPS/node & 134.4 & 345.6 & 518.4 & 384.0 \\ 
       \hline 
-      \# nodes & 76 & 194 & 4 \\ 
+      \# nodes & 76 & 194 & 40 & 4 \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -292,10 +292,10 @@ NeSI is a partnership for all New Zealand researchers delivered by
      
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Link MKL with OpenMPI, CDFT, ScaLAPACK, BLACS and Intel Compilers}
-      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_scalapack_ilp64 \|
+      \textbf{Link line:} \verb|-L${MKLROOT}/mkl/lib/intel64 -lmkl_scalapack_ilp64 \|
       \verb|        -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_sequential \|
       \verb|        -lmkl_core -lmkl_blacs_intelmpi_ilp64 -lpthread -lm|\\
-      \textbf{Compiler options: }      \verb|-DMKL_ILP64 -I${MKLROOT}/include|\\
+      \textbf{Compiler options: }      \verb|-DMKL_ILP64 -I${MKLROOT}/mkl/include|\\
       More information at \url{http://software.intel.com/sites/products/mkl/}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -303,9 +303,9 @@ NeSI is a partnership for all New Zealand researchers delivered by
  
          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Link MKL with OpenMP and Intel compilers}
-      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 \|\\
+      \textbf{Link line:} \verb|-L${MKLROOT}/mkl/lib/intel64 -lmkl_intel_ilp64 \|\\
       \verb|       -lmkl_intel_thread -lmkl_core -lpthread -lm|\\
-      \textbf{Compiler options: } \verb|-openmp -DMKL_ILP64 -I${MKLROOT}/include|
+      \textbf{Compiler options: } \verb|-openmp -DMKL_ILP64 -I${MKLROOT}/mkl/include|
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
@@ -332,7 +332,7 @@ NeSI is a partnership for all New Zealand researchers delivered by
       The login node is not for running jobs, it is only for file management and job submission.\\
       \textbf{Parameters}
         \begin{itemize}
-        \item host: login-01.uoa.nesi.org.nz
+        \item host: login.uoa.nesi.org.nz
         \item port: 22
         \end{itemize}
       \end{block}
@@ -491,8 +491,9 @@ NeSI is a partnership for all New Zealand researchers delivered by
         \item \verb|--ntasks=96| specifies how many tasks (cores) are to be run in total
         \item \verb|--time=01:00:00| Sets the limit for the elapsed time for which a job can run
         \item \verb|--nodes=N-M| Defines the minimum (N) and the maximum (M) number of nodes.
-        \item \verb|-C sb| Requires an specific hardware architecture (sb=Sandybridge,wm=Westmere)
+        \item \verb|-C sb| Requires an specific architecture (ib=IvyBridge,sb=SandyBridge,wm=Westmere)
         \item \verb|--exclusive| Requires exclusive execution
+        \item \verb|-D| Sets the working directory
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
