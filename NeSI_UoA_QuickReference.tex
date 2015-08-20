@@ -35,11 +35,10 @@
 \usepackage{fp}
 \usepackage{ifthen}
 
-\title{\huge Quick Reference Guide to the High Performance Computer Environments @ NeSI}
-\author{New Zealand eScience Infrastructure}
+\title{\huge High Performance Computing Quick Reference Guide to the NeSI Pan Cluster}
+\author{New Zealand eScience Infrastructure (\href{https://www.nesi.org.nz/}{NeSI}) @ \href{http://www.eresearch.auckland.ac.nz/}{The University of Auckland}}
 \institute[]{
-  New Zealand eScience Infrastructure (\href{https://www.nesi.org.nz/}{NeSI}) \\
-  a partnership for all New Zealand researchers delivered by \\
+NeSI is a partnership for all New Zealand researchers delivered by 
   \href{http://www.eresearch.auckland.ac.nz/}{The University of Auckland}, \href{http://www.niwa.co.nz/our-services/hpcf}{NIWA}, \href{http://www.bluefern.canterbury.ac.nz/}{University of Canterbury}, \\
   \href{http://www.landcareresearch.co.nz/}{Landcare Research}, \href{http://www.otago.ac.nz/}{Otago University} and \href{http://msi.govt.nz/}{MBIE}
 }
@@ -56,11 +55,10 @@
     \begin{column}{.32\linewidth}
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
       \begin{block}{Contact Information}
         \begin{itemize}
         \item \textbf{web}: \url{http://www.nesi.org.nz}
-        \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CERES/}
+        \item \textbf{wiki}: \url{https://wiki.auckland.ac.nz/display/CER/}
         \item \textbf{ganglia}: \url{http://ganglia.uoa.nesi.org.nz}
         \item \textbf{support} : \href{mailto:support@nesi.org.nz}{support@nesi.org.nz}
         \end{itemize}
@@ -68,6 +66,16 @@
         \hspace*{7cm}
         \includegraphics[width=1.4cm]{img/qrcode.png} 
       \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Recommended Best Practices}
+      \begin{itemize}
+         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
+         \item In order to improve the scalability of your MPI code, we suggest to minimise the number of nodes to be used. The \verb|--nodes=N-M| Slurm option, will define the minimum (N) and the maximum (M) number of nodes.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Useful Quick References}
@@ -76,10 +84,10 @@
         \begin{itemize}
         \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/vi+Quick+Reference.pdf}{VI Quick Reference}
         \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/Bash+Quick+Reference.pdf}{BASH Quick Reference} 
-        \item \href{https://wiki.auckland.ac.nz}{Linux Quick Reference}
-        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-FortranCard.pdf}{OpenMP Fortran Syntax}
-        \item \href{https://wiki.auckland.ac.nz/download/attachments/37950883/OpenMP3.1-CCard.pdf}{OpenMP 3.1 API C/C++ Syntax}
-        \item \href{https://wiki.auckland.ac.nz}{MPI Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/65014423/fwunixref.pdf?version=1&modificationDate=1399584680387&api=v2}{Linux Quick Reference}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/OpenMP3.1-FortranCard.pdf?version=1&modificationDate=1399506093589&api=v2}{OpenMP Fortran Syntax}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/OpenMP3.1-CCard.pdf?version=1&modificationDate=1399506057930&api=v2}{OpenMP 3.1 API C/C++ Syntax}
+        \item \href{https://wiki.auckland.ac.nz/download/attachments/57639811/mpi-quick-ref.pdf?version=1&modificationDate=1399506030365&api=v2}{MPI Quick Reference}
         \end{itemize}
         \end{multicols}
         \vspace*{-3ex}
@@ -87,28 +95,61 @@
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Hardware Information}
+      \begin{block}{NeSI Pan Cluster}
         \vspace*{-2ex}
       \begin{center}
       \begin{tabular}{|c|c|c|c|c|}
       \hline 
-      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{LargeMem} & \textbf{GPU} \\ 
+      \textbf{Architecture} & \textbf{Westmere} & \textbf{SandyBridge} & \textbf{IvyBridge} & \textbf{LargeMem} \\ 
       \hline 
-      Model & X5660 & E5-2680 & E7-4870 & X5660 (M2090) \\ 
+      Model & X5660 & E5-2680 &E5-2697 v2 & E7-4870 \\ 
       \hline 
-      Clock Speed & 2.8 GHz & 2.7 GHz & 2.4GHz & 2.8 (1.3)GHz\\ 
+      Clock Speed & 2.8 GHz & 2.7 GHz & 2.7GHz & 2.4GHz \\ 
       \hline 
-      Cache & 12MB & 20MB & 30MB & 12MB\\ 
+      Cache & 12MB & 20MB & 30MB & 30MB \\ 
       \hline 
-      Intel QPI speed & 6.4GT/s & 8 GT/s & 6.4GT/ & 6.4GT/s\\ 
+      Intel QPI speed & 6.4GT/s & 8 GT/s & 9.6GT/s & 6.4GT/s \\ 
       \hline 
-      Cores/socket & 6 & 8 & 10 & 6(512)\\ 
+      Cores/socket & 6 & 8 & 12& 10 \\ 
       \hline       
-      Cores/node & 12 & 16 & 40 & 12(1024)\\ 
+      Cores/node & 12 & 16 & 24 & 40 \\ 
       \hline 
-      Mem/node & 96GB & 128GB & 512GB & 96GB(6GB)\\ 
+      Mem/node & 96GB & 128GB & 128GB/256GB & 512GB \\ 
       \hline 
-      GFLOPS/node & 134.4 & 172.8 & 384.0 & 134.4 (1330DP)\\ 
+      GFLOPS/node & 134.4 & 345.6 & 518.4 & 384.0 \\ 
+      \hline 
+      \# nodes & 76 & 194 & 40 & 4 \\ 
+      \hline 
+      \end{tabular} 
+      \end{center}
+        \vspace*{-2ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{NeSI Pan Cluster - Co-Processors}
+        \vspace*{-2ex}
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|}
+      \hline 
+      \textbf{Architecture} & \textbf{Nvidia Fermi} & \textbf{Nvidia Kepler} & \textbf{Intel Phi} \\ 
+      \hline 
+      Main CPU                  &  X5660/E5-2680       &  E5-2680                   &  E5-2680 \\
+      \hline 
+      Model                       &  M2090                     &   K20X                       &  5110P \\ 
+      \hline 
+      Clock Speed             &  1.3GHz                    &  0.732GHz                      &  1.053GHz\\ 
+      \hline 
+      Cores/Dev.             & 512                            & 2688                           & 60 (240) \\ 
+      \hline       
+      Dev./node              &  2                             &   2                                &  2  \\ 
+      \hline 
+      Mem/Dev.             & 6GB                          & 6GB                               & 8GB  \\ 
+      \hline 
+      TFLOPS/Dev         & 1.33                          & 1.17                              & 1.01 \\ 
+      \hline 
+      \# nodes               & 16                             & 5                                 & 2 \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -125,13 +166,17 @@
       \hline 
       \textbf{FileSystem} & \textbf{Space} & \textbf{Quota} & \textbf{ACL} & \textbf{Backup} & \textbf{Type} & \textbf{Usage}  \\ 
       \hline 
-      \$HOME & 120TB & 30GB & rw & yes & GPFS & Archive \\ 
+      \$HOME & 120TB & 2GB & rw & yes & GPFS & Archive \\ 
+      \hline 
+      /project & 120TB & 30GB & rw & yes & GPFS & Archive \\ 
       \hline 
       /share & 120TB & - & ro & yes & GPFS & Archive \\ 
       \hline 
       \$TMP\_DIR & 240GB & - & rw & NO & EXT4 & io \\ 
       \hline 
-      \$SCRATCH\_DIR & 8.8TB & - & rw & NO & GPFS & io \\ 
+      \$SCRATCH\_DIR & 13TB & - & rw & NO & GPFS & io \\ 
+      \hline 
+      \$SHM\_DIR & Mem & - & rw & NO & RamFS & io \\ 
       \hline 
       \end{tabular} 
       \end{center}
@@ -141,18 +186,7 @@
  
  
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Environment Modules}
-      \textbf{Environment Modules} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically.
-        \begin{itemize}
-        \item  \textbf{module avail} - lists available modules
-        \item  \textbf{module show module\_name} - displays full information about the module with name \textit{module\_name}.
-        \item  \textbf{module load module\_name} - loads the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module unload module\_name } - unload  the module with name \textit{module\_name} and its dependencies. 
-        \item  \textbf{module list} - list all modules currently loaded.
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
  
 
      \end{column}
@@ -171,7 +205,7 @@
       \begin{center}
       \begin{tabular}{|c|c|c|c|}
       \hline 
-      \textbf{Compiler} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
+      \textbf{Language} & \textbf{Intel} & \textbf{GNU} & \textbf{PGI} \\ 
       \hline 
       Fortran77 & ifort & g77 & pgf77 \\ 
       \hline 
@@ -203,9 +237,9 @@
       \hline 
       \textbf{MPI} & \textbf{version} \\ 
       \hline 
-      Intel MPI & 4.1.0.024  \\ 
+      Intel MPI & 4.1.0,4.1.1  \\ 
       \hline 
-      OpenMPI & 1.4,1.6  \\ 
+      OpenMPI & 1.4,1.6,1.8  \\ 
       \hline 
       MPICH2 & 1.5,3.0.4  \\ 
       \hline 
@@ -258,10 +292,10 @@
      
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Link MKL with OpenMPI, CDFT, ScaLAPACK, BLACS and Intel Compilers}
-      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_scalapack_ilp64 \|
+      \textbf{Link line:} \verb|-L${MKLROOT}/mkl/lib/intel64 -lmkl_scalapack_ilp64 \|
       \verb|        -lmkl_cdft_core -lmkl_intel_ilp64 -lmkl_sequential \|
       \verb|        -lmkl_core -lmkl_blacs_intelmpi_ilp64 -lpthread -lm|\\
-      \textbf{Compiler options: }      \verb|-DMKL_ILP64 -I${MKLROOT}/include|\\
+      \textbf{Compiler options: }      \verb|-DMKL_ILP64 -I${MKLROOT}/mkl/include|\\
       More information at \url{http://software.intel.com/sites/products/mkl/}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -269,53 +303,20 @@
  
          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Link MKL with OpenMP and Intel compilers}
-      \textbf{Link line:} \verb|-L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 \|\\
+      \textbf{Link line:} \verb|-L${MKLROOT}/mkl/lib/intel64 -lmkl_intel_ilp64 \|\\
       \verb|       -lmkl_intel_thread -lmkl_core -lpthread -lm|\\
-      \textbf{Compiler options: } \verb|-openmp -DMKL_ILP64 -I${MKLROOT}/include|
+      \textbf{Compiler options: } \verb|-openmp -DMKL_ILP64 -I${MKLROOT}/mkl/include|
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{LoadLeveler Commands}
-        \begin{itemize}
-        \item  \textbf{llsubmit} sends a new job to the scheduler for execution
-        \item  \textbf{llclass} show the current list of classes.
-        \item  \textbf{llq} returns queue information 
-         \begin{itemize}
-              \item \verb|llq -l <job id>| gives extended job record information.
-              \item \verb|llq -s <job id>| gives specific information about why the job is held.
-              \item \verb|llq -u <user name>| lists only jobs initiated by the user.
-         \end{itemize}
-        \item \textbf{llcancel} kills a queued job: \verb|llcancel <job id>|
-        \end{itemize}
-       More information about LoadLeveler in User Manual : \url{http://www.redbooks.ibm.com/redbooks/pdfs/sg246038.pdf}
+ 
+       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Get Involved!}
+       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
+       {\Large We would like to encourage you to send suggestions and feedback to the NeSI Team (\url{support@nesi.org.nz}).}}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Limits}
-        \vspace*{-2ex}
-      \begin{center}
-      \begin{tabular}{|c|c|c|}
-      \hline 
-      \textbf{Name} & \textbf{MaxJobCPU} & \textbf{Description} \\ 
-      \hline 
-      small1h & 41 &  Jobs running for under 1 hour (high priority)\\ 
-      \hline 
-      small6h & 41 & Jobs running for under 6 hours  (high priority)\\ 
-      \hline 
-      medium & 12500 &  Jobs running for under 1 week  (medium priority)\\ 
-      \hline 
-      long & unlimited &  Jobs running for longer than a week  (low priority)\\ 
-      \hline 
-      bigmem & unlimited &  Jobs that needs more than 12GB/core\\ 
-      \hline 
-      \end{tabular} 
-      \end{center}
-        \vspace*{-2ex}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+ 
      \end{column}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -324,50 +325,39 @@
     
     \begin{column}{.32\linewidth}
     \vskip-2ex
-    \begin{columns}[t]
-    \begin{column}{.38\linewidth}
+%    \begin{columns}[t]
+%    \begin{column}{.38\linewidth}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{OpenSSH Access}
+      \begin{block}{SSH Access : Login Node}
+      The login node is not for running jobs, it is only for file management and job submission.\\
       \textbf{Parameters}
         \begin{itemize}
-        \item host: login-01.uoa.nesi.org.nz
+        \item host: login.uoa.nesi.org.nz
         \item port: 22
-        \end{itemize}
-       \textbf{Limits}
-        \begin{itemize}
-        \item CPU time: 60 minutes
-        \item Memory : 2GB
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \end{column}
-     \hspace*{-0.6cm}
-     \begin{column}{.56\linewidth}
+%      \end{column}
+%     \hspace*{-0.6cm}
+%     \begin{column}{.56\linewidth}
+     
+%      \end{column}
+%  \end{columns}
+
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Suggested Software}
         \begin{itemize}
-        \item Windows: \href{http://mobaxterm.mobatek.net/}{mobaxterm}, \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/}{Putty}, \href{http://www.bitvise.com/tunnelier}{Bitvise Tunnelier}
-        \item MacOSX: Terminal(Included in the OS), \href{http://www.iterm2.com/}{iTerm2}
-        \item Linux: \href{http://konsole.kde.org/}{Konsole}, GnomeTerminal, \href{http://yakuake.kde.org/}{yakuake}
+        \item \textbf{mobaxterm} (Windows) : \url{http://mobaxterm.mobatek.net} 
+        \item \textbf{Putty} (Windows) : \url{http://www.chiark.greenend.org.uk/~sgtatham/putty/}
+        \item \textbf{Terminal} (MacOSX) :  (Included in the OS)
+        \item \textbf{iTerm2} (MacOSX) : \url{http://www.iterm2.com}
+        \item \textbf{Konsole} (Linux) : \url{http://konsole.kde.org}
+        \item \textbf{GnomeTerminal} (Linux) : \url{https://wiki.gnome.org/Apps/Terminal}
+        \item \textbf{yakuake} (Linux) : \url{http://yakuake.kde.org}
         \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \end{column}
-  \end{columns}
-
-
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Building Nodes}
-      The building nodes will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{CPUTime} and \textbf{70GB} of \textbf{memory}.
-        \begin{itemize}
-        \item Westmere + GPU : build-gpu-p
-        \item SandyBridge + GPU : build-gpu-sb-p
-        \item SandyBridge + Phi : build-phi-p
-        \end{itemize}
-      \end{block}
       
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Remote File System Access}
@@ -375,7 +365,7 @@
         \begin{itemize}
         \item \textbf{SSHFS} (MacOSX) : \url{http://code.google.com/p/macfuse/}
         \item \textbf{SSHFS} (Linux) : \url{http://fuse.sourceforge.net/sshfs.html}
-        \item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
+        %\item \textbf{SSHFS} (Windows) : \url{http://code.google.com/p/win-sshfs/}
         \item \textbf{Konqueror} (KDE) : type fish://user@host:port
         \item \textbf{Nautilus} (Gnome) : type sftp://user@host:port
         \item \textbf{WinSCP} (Windows) : \url{http://winscp.net}
@@ -403,17 +393,48 @@
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- 
-       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Get Involved!}
-       \centering{\includegraphics[scale=0.6]{img/avatar_19476.png}\\
-       {\Large We would like to encourage you to send suggestions and feedback to the \href{mailto:support@nesi.org.nz}{NeSI Team}.}}
+    \vskip-2ex
+    \begin{columns}[t]
+     \hspace*{+0.01cm}
+    \begin{column}{.48\linewidth}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Bash Shortcuts}
+      \begin{itemize}
+         \item Ctrl+c - halts the current command.
+         \item Ctrl+z - stops the current command.
+         \item Ctrl+d - log out of current session.
+         \item Ctrl+k - Delete from the cursor to the end of the line.
+         \item Ctrl+w - Delete from the cursor to the start of the word.
+         \item Ctrl+u - Delete from the cursor to the beginning of the line.
+         \item Ctrl+r - reverse search to bash history.
+         \item !! - repeats the last command.
+        \end{itemize}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
 
-    
- 
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+     \hspace*{-0.8cm}
+     \begin{column}{.49\linewidth}
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Process management}
+      \begin{itemize}
+         \item ps - display all active processes.
+         \item top - display all running processes.
+         \item kill pid - kill process id pid.
+         \item killall proc - kill all processes named proc.
+         \item bg - lists stopped or background jobs.
+         \item bg n - resume job n in the background.
+         \item fg - brings the most recent job to foreground.
+         \item fg n - brings job n to the foreground.
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{column}
+  \end{columns}
+   
+
     \end{column}
   \end{columns}
 \end{frame}
@@ -425,85 +446,76 @@
     \begin{column}{.35\linewidth}
 
 
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{SubmitScript Example : SMP job using local disk}
-              \vspace*{-3ex}
-        \begin{verbatim}
-#!/bin/bash 
-# Gaussian SubmitScript 
-# Optimized for run parallel job of 8 Cores in NeSI Pan Cluster
-##########################################################################
-#@ job_name = Gaussian
-#@ class = default
-#@ notification = never
-#@ group = nesi
-#@ account_no = uoa
-#@ wall_clock_limit = 1:00
-#@ initialdir = $(home)
-#@ output = $(home)/$(job_name).txt
-#@ error = $(home)/$(job_name).err
-#@ job_type = serial
-#@ resources = ConsumableMemory(2048mb) ConsumableVirtualMemory(2048mb)
-#@ parallel_threads = 8
-#@ environment = COPY_ALL,OMP_NUM_THREADS=8
-#@ queue
-########################################################################## 
-###  Load the Enviroment Modules for Gaussian G09 C.01
-. /etc/profile.d/modules.sh
-module load g09/C.01
-##########################################################################
-###  Transfering the data to the temporal disk  ($TMP_DIR)
-cd $TMP_DIR
-cp -r $HOME/Gaussian/h2o_opt.dat . 
-setenv GAUSS_SCRDIR $TMP_DIR
-##########################################################################
-###  Run the Parallel Program
-smpexec g09 < ./h2o_opt.dat > h2ol_opt.log
-##########################################################################
-###  Transfering the results to the home directory ($HOME) 
-cp -pr $TMP_DIR $HOME/results/
-        \end{verbatim}
-                \vspace*{-4ex}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-      
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Most important OpenMPI (mpirun) Options}
-              To find the full list of the available component types under the MCA architecture load the OpenMPI module and execute : \verb|ompi_info --param all all|. More information at \textbf{\href{http://www.open-mpi.org/doc/v1.6/man1/mpirun.1.php}{OpenMPI WebSite}} \\
-      \begin{itemize}
-         \item \verb|-c, -n, --n, -np <#>| Run this many copies of the program on the given nodes. 
-         \item \verb|-npersocket <#persocket>| Launch this processes for each sockets on the node.
-         \item \verb|-pernode| On each node, launch one process.
-         \item \verb|--app <appfile>| Provide an appfile, ignoring all other command line options.
-%         \item To map processes to nodes:
-%         \begin{itemize}
-%         \item \verb|-loadbalance| - Uniform distribution of ranks across all nodes.
-%         \item \verb|-nooversubscribe| - Do not oversubscribe any nodes ???
-%         \item \verb|-bynode| - Launch processes one per node, cycling by node in a round-robin fashion.
-%         \end{itemize}
-         \item \verb|-bind-to-core, -bind-to-socket| For process binding 
-         \item \verb|-debug| Invoke the user-level debugger.
-         \item \verb|-debugger| Sequence of debuggers to search for when -debug is used.
-         \item \verb|-mca, --mca <key> <value>| Send arguments to various \textbf{MCA modules}.
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Slurm Commands}
+        \begin{itemize}
+        \item  \textbf{sbatch} - submits a script job.
+        \item \textbf{scancel} - cancels a running or pending job.
+	    \item \textbf{sinfo} - provides information on partitions and nodes.
+	    \item \textbf{sview} - GUI to view job, node and partition information (ssh -X option required).
+	    \item \textbf{smap} - CLI to view job, node and partition information.
+        \item  \textbf{squeue} - shows the status of jobs. 
          \begin{itemize}
-         \item \verb|btl self,sm,openib| Select which network to use for MPI communications
-         \item \verb|btl_sm_use_knem 1| Use KNEM for intra-node MPI.
-         %\item \verb|-mca mpi_paffinity_alone 1| Use processor and/or memory affinity (ompi $=<$ 1.3)
-         \item \verb|coll_sm_control_size| Buffer size (in bytes) chosen to optimize collective operations
-         \item \verb|coll_fca_enable 1| Use Fabric Collective Accelerator (Only Mellanox)
-         \item \verb|coll_base_verbose 1| Verbosity level for the coll framework
-         \item \verb|coll_tuned_use_dynamic_rules 1| Dynamic optimization of collective operations
-         \item \verb|coll_tuned_alltoall_algorithm 3| AllToAll Collective communication algorithm 
-         \item \verb|coll_tuned_allreduce_algorithm 4| AllReduce Collective communication algorithm
-         \item \verb|mtl mxm| Use MellanoX Messaging library which provides enhancements to parallel communication libraries.
-         \end{itemize}
+              \item \verb|squeue -l -j <job id>| gives extended job record information.
+              \item \verb|squeue -u <user name>| lists only jobs initiated by the user.
         \end{itemize}
-        \textbf{Remember that you don't need to setup this options if you are using the MPIRUN wrapper!}
+        \item \textbf{sbcast} - transfer file to a compute nodes allocated to a job.
+        \item \textbf{interactive} - opens an interactive job session.
+	    \item \textbf{sattach} - connects stdin/out/err for an existing job or job step.
+        \end{itemize}
+       More information about Slurm in the NeSI Slurm User Guide : \url{https://wiki.auckland.ac.nz/display/CER/Slurm+User+Guide}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Slurm Submit Script Syntax}
+        \begin{itemize}
+        \item \verb|-A uoa99999| User account (i.e. nesiXXXXX, landcareXXXXX, uooXXXXX,uocXXXXX)
+        \item \verb|--mem-per-cpu=8132| = memory/cpu (in MB)
+        \item \verb|-J My_Job_Name| Sets the job name
+        \item \verb|-o test-%j.%N.out| name of output file (default is slurm-jobid.out)
+        \item \verb|-e test-%j.%N.err| name of error file (default is slurm-jobid.err)
+        \item \verb|--mail-type=ALL| Specifies under which conditions Slurm will send out email notifications to the specified address about the state of the job (ALL, BEGIN, END, FAIL, REQUEUE).
+%        \begin{itemize}
+%            \item ALL - notifies about every change in the job status.
+%            \item BEGIN - notifies when the job is activated.
+%            \item END - notifies when the job ends.
+%            \item FAIL - notifies only if the job fails.
+%            \item REQUEUE - notifies only if the job is requeued.
+%        \end{itemize}
+        \item \verb|--mail-user=username@nesi.org.nz| user email
+        \item \verb|--cpus-per-task=8| Sets the number of cores to be allocated for each task.
+        \item \verb|--gres=gpu:1| - Specifies the number of GPU devices requested.
+        \item \verb|--gres=mic:1| - Specifies the number of Intel Xeon Phi Co-Processor devices requested.
+        \item \verb|--ntasks-per-node=16| specifies the total number of tasks to be run on each available node.
+        \item \verb|--ntasks=96| specifies how many tasks (cores) are to be run in total
+        \item \verb|--time=01:00:00| Sets the limit for the elapsed time for which a job can run
+        \item \verb|--nodes=N-M| Defines the minimum (N) and the maximum (M) number of nodes.
+        \item \verb|-C sb| Requires an specific architecture (ib=IvyBridge,sb=SandyBridge,wm=Westmere)
+        \item \verb|--exclusive| Requires exclusive execution
+        \item \verb|-D| Sets the working directory
+        \end{itemize}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Interactive sessions}
+      The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
+      \vspace*{-0.2cm}
+	 \begin{verbatim}
+Usage: interactive [-A] [-a] [-c] [-m] [-J] [-e]
+Mandatory arguments:
+	 -A: account
+Optional arguments:
+	 -a: architecture (default: wm, values sb=SandyBridge wm=Westmere)
+	 -c: number of CPU cores (default: 1)
+	 -m: amount of memory (GB) per core (default: 1 [GB])
+	 -J: job name
+	 -e: binary that you want to run interactively
+example : interactive -A nesi99999
+	\end{verbatim} 
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
     \end{column}
@@ -514,84 +526,94 @@ cp -pr $TMP_DIR $HOME/results/
     
     \begin{column}{.3\linewidth}
     
- 
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Submit Script Syntax}
-        \begin{itemize}
-        \item \textbf{account\_no} = (uoa, uoc, uoo, landcare or nesiXXXX)
-        \item \textbf{blocking} = (unlimited or N). Where N is the number of tasks allocated to nodes
-        %\item \textbf{class} =
-        \item \textbf{group} = Identifies what group the job submission is done under.
-        \begin{itemize}
-            \item nesi - users without a particular NeSI project
-            \item chemistry - University of Auckland Chemistry Department
-            \item pd - NeSI Proposal Development allocations
-            \item unfunded - NeSI Research allocations without NeSI HPC funding
-            \item funded - NeSI Research allocations with NeSI HPC funding
-        \end{itemize}
-        \item \textbf{job\_name} Sets the job name and the \$job\_name macro
-        \item \textbf{job\_type} Specifies the job type for the submission. 
-        \begin{itemize}
-            \item Serial - single- or multi-threaded job, SMP, confined within a single node
-            \item MPI - Distributed Parallel Environment (includes OpenMPI 1.4 but not 1.6)
-            \item MPICH - Distributed Parallel Environment includes MPICH and OpenMPI 1.6
-        \end{itemize}        
-        %\item \textbf{node\_resources}
-        %\item \textbf{node\_usage}
-        \item \textbf{notification} Specifies under which conditions Loadleveler will send out email notifications to the specified address about the state of the job:
-        \begin{itemize}
-            \item always - notifies about every change in the job status
-            \item start - notifies when the job is activated
-            \item complete - notifies when the job ends
-            \item error - notifies only if the job fails
-            \item never - never send any notifications
-        \end{itemize}
-        \item \textbf{notify\_user} user email
-        \item \textbf{parallel\_threads} Sets the number of cores to be allocated for each task
-        %\item \textbf{queue}
-        \item \textbf{resources} Specifies what consumable resources the job requires to run per task:
-        \begin{itemize}
-            \item ConsumableMemory - the amount of physical memory required. 
-            \item ConsumableVirtualMemory - the amount of virtual memory required.
-            \item GPUDev - the number of GPU devices required (max 2 GPU).
-            \item AnsysLicenses - the number of ANSYS licenses to check out (max 40).
-        \end{itemize}
-        %\item \textbf{requirements} Can be (Feature=="sandybridge") or (Feature=="westmere")
-        \item \textbf{tasks\_per\_node} specifies the total number of tasks (cores) to be run on each available node.
-        \item \textbf{total\_tasks} specifies how many tasks (cores) are to be run in total
-        \item \textbf{wall\_clock\_limit} Sets the limit for the elapsed time for which a job can run
-        \end{itemize}
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Useful MPIRUN Wrapper}
-      Inside each application module file there is a useful command wrapper of mpirun that can simplify its usage.
-      In your script you only have to write:\\
-      \verb|MPIRUN binary <aplication options>|\\
-     Instead of:\\
-      \verb|mpirun -np 64 -mca btl self,sm,openib \|\\
-      \verb|        -mca btl_sm_use_knem 1        \|\\
-      \verb|        -mca mpi_paffinity_alone 1    \|\\
-      \verb|        --bind-to-core                \|\\
-      \verb|        binary <aplication options> |\\
-      The \textbf{MPIRUN} Wrapper can be setup in the module file using the following syntax:
-      \verb|set-alias  MPIRUN  "mpirun -np \$LOADL_TOTAL_TASKS OPTIONS \$@" |\\
+      \begin{block}{Submit Script Example : Serial}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash
+#SBATCH -J OpenMP_JOB
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+srun serial_binary
+        \end{verbatim}
+                \vspace*{-4ex}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Recommended Best Practices}
-      \begin{itemize}
-         \item Use the \textbf{SubmitScripts Templates} that are in /share/SubmitScripts.
-         \item Use the \textbf{smpexec} for SMP jobs in order to use the core binding capabilities\\
-         \verb|smpexec myapplication argument1 argument2|\\
-         \item Ask for the minimum nodes for the specified number of cores for the very large jobs. It will take more time to enter in execution but will finish with less walltime.
-        \end{itemize}
+      \begin{block}{Submit Script Example : OpenMP}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash
+#SBATCH -J OpenMP_JOB
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+#SBATCH --cpus-per-task=8   # 8 OpenMP Threads
+srun openmp_binary
+        \end{verbatim}
+                \vspace*{-4ex}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Submit Script Example : MPI}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash
+#SBATCH -J MPI_JOB
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH --ntasks=2          # number of tasks
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+srun mpi_binary
+        \end{verbatim}
+                \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Submit Script Example : Hybrid (MPI+OpenMP)}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash
+#SBATCH -J Hybrid_JOB
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH --ntasks=4          # number of tasks
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+#SBATCH --cpus-per-task=8   # 8 OpenMP Threads
+#SBATCH --nodes=1           # number nodes
+srun binary_hybrid
+        \end{verbatim}
+                \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Submit Script Example : Hybrid (MPI+CUDA)}
+              \vspace*{-3ex}
+        \begin{verbatim}
+#!/bin/bash
+#SBATCH -J GPU_JOB
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --ntasks=4          # number of tasks
+#SBATCH --ntasks-per-node=2 # number of tasks per node
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+#SBATCH --cpus-per-task=4   # 4 OpenMP Threads
+# The following line will request GPUs per node. In this  
+# particular example, it means 4 GPUs in total.
+#SBATCH --gres=gpu:2       
+#SBATCH -C kepler
+srun binary_cuda_mpi
+        \end{verbatim}
+                \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
     \end{column}
 
@@ -602,62 +624,51 @@ cp -pr $TMP_DIR $HOME/results/
     \begin{column}{.35\linewidth}
     
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{SubmitScript Example : MPI job using Shared FileSystem}
+      \begin{block}{Submit Script Example : Job Array}
               \vspace*{-3ex}
         \begin{verbatim}
 #!/bin/bash
-# NAMD SubmitScript
-# Optimized for run parallel job of 512 Cores at NeSI (Pandora-SandyBridge)
-##########################################################################
-#@ job_name = NAMD_TEST
-#@ class = default
-#@ group = nesi
-#@ notification = never
-#@ account_no = uoa
-#@ wall_clock_limit = 00:59:00
-#@ resources = ConsumableMemory(4096mb) ConsumableVirtualMemory(4096mb)
-#@ job_type = MPICH
-#@ blocking = unlimited
-#@ node_usage = not_shared
-#@ output = $(job_name).$(jobid).out
-#@ error = $(job_name).$(jobid).err
-#@ requirements = (Feature=="sandybridge")
-#@ initialdir = /share/test/NAMD/apoa1
-#@ total_tasks = 512
-#@ queue
-##########################################################################
-###  Load the Enviroment
-ulimit -m $((4096*1024)) -v $((4096*1024))
-. /etc/profile.d/modules.sh
-module load NAMD/2.9-sandybridge
-##########################################################################
-###  The files will be allocated in the shared FS ($SCRATCH_DIR)
-cp -pr /share/test/NAMD/apoa1/* $SCRATCH_DIR
-cd $SCRATCH_DIR
-##########################################################################
-###  Run the Parallel Program
-export OMP_NUM_THREADS=1
-MPIRUN namd2 apoa1.namd
-##########################################################################
-###  Transfering the results to the home directory ($HOME)
-#cp -pr $SCRATCH_DIR $HOME/OUT/namd
+#SBATCH -J JobArray
+#SBATCH --time=01:00:00     # Walltime
+#SBATCH -A uoa99999         # Project Account
+#SBATCH --ntasks=1          # number of tasks
+#SBATCH --mem-per-cpu=8132  # memory/cpu (in MB)
+#SBATCH --cpus-per-task=4   # 4 OpenMP Threads
+#SBATCH --array=1-1000      # Array definition
+srun binary_array $SLURM_ARRAY_TASK_ID
         \end{verbatim}
-        \vspace*{-4ex}
+                \vspace*{-4ex}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Grisu Command Line Interface (griclish)}
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{User Environment}
+      \textbf{LMOD} is very useful to manage environment variables for each application and it is very easy to use. It loads the needed environment by a certain application and its dependencies automatically. The command line is fully compatible with the previous \textbf{Environment Modules}, and it provides simple short-cuts and advanced features.\\
+      Syntax : \verb|module [options] sub-command [args ...]|\\
+      \textbf{Loading/Unloading sub-commands}
         \begin{itemize}
-        \item \verb|help| - displays help menu
-        \item \verb|help <keyword>| - displays help about a keyword
-        \item \verb|attach <path_to_file>| - attaches a file to the next job
-        \item \verb|set <property> <value>| - sets a value for the next job
-        \item \verb|submit <command_to_run>| - submits a job
-        \item \verb|print jobs| - lists all jobs and their statuses
-        \item \verb|print job <jobname>| - displays details about a job
+        \item  \textbf{load $|$ add} load module(s)
+        \item  \textbf{del $|$ unload} Remove module(s), do not complain if not found
+        \item  \textbf{purge} unload all modules
+        \item  \textbf{update} reload all currently loaded modules.
         \end{itemize}
+       \textbf{Listing / Searching sub-commands}
+        \begin{itemize}
+        \item  \textbf{list} List loaded modules
+        \item  \textbf{avail $|$ av} List available modules
+        \item  \textbf{avail $|$ av string} List available modules that contain "string".
+        \item  \textbf{spider} List all possible modules
+        \item  \textbf{spider module} List all possible version of that module file
+        \item  \textbf{spiderstring} List all module that contain the "string".
+        \end{itemize}
+       \textbf{Short-cuts}
+       \begin{itemize}
+        \item \textbf{ml} - means: module list
+        \item \textbf{ml foo bar} - means: module load foo bar
+        \item \textbf{ml -foo -bar baz goo}- means: module unload foo bar; module load baz goo;
+        \end{itemize}
+        More information at \url{http://www.tacc.utexas.edu/tacc-projects/lmod}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       
