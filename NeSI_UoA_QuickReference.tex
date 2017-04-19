@@ -16,7 +16,7 @@
 
 % additional packages
 \usepackage{times}
-\usepackage{amsmath, amsthm, amssymb, soul, color, multicol, type1cm, verbatim, latexsym, float,multicol}
+\usepackage{amsmath, amsthm, amssymb, soul, color, multicol, type1cm, verbatim, latexsym, float, dsfont, listings,alltt,tabularx}
 \usepackage{exscale}
 %\boldmath
 \usepackage{booktabs, array}
@@ -498,34 +498,6 @@ NeSI is a partnership for all New Zealand researchers delivered by
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \begin{block}{Interactive sessions}
-      The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
-      \vspace*{-0.2cm}
-	 \begin{verbatim}
-Usage: interactive [-A] [-a] [-c] [-m] [-J] [-e]
-Mandatory arguments:
-	 -A: account
-Optional arguments:
-	 -a: architecture (default: wm, values sb=SandyBridge wm=Westmere)
-	 -c: number of CPU cores (default: 1)
-	 -m: amount of memory (GB) per core (default: 1 [GB])
-	 -J: job name
-	 -e: binary that you want to run interactively
-example : interactive -A nesi99999
-	\end{verbatim} 
-      \end{block}
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-    \end{column}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    \begin{column}{.3\linewidth}
-    
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Submit Script Example : Serial}
@@ -541,6 +513,15 @@ srun serial_binary
                 \vspace*{-4ex}
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.3\linewidth}
+    
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Submit Script Example : OpenMP}
@@ -614,15 +595,6 @@ srun binary_cuda_mpi
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-    \end{column}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    \begin{column}{.35\linewidth}
-    
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \begin{block}{Submit Script Example : Job Array}
               \vspace*{-3ex}
@@ -638,6 +610,39 @@ srun binary_cuda_mpi
 srun binary_array $SLURM_ARRAY_TASK_ID
         \end{verbatim}
                 \vspace*{-4ex}
+      \end{block}
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \end{column}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \begin{column}{.35\linewidth}
+    
+
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \begin{block}{Interactive sessions}
+      The interactive sessions will allow you to build the binaries for specific architecture. The binaries compiled in Westmere can run in Sandy Bridge, but it can \textbf{NOT} exploit all the Sandy bridge features. The binaries compiled in Sandy Bridge can \textbf{NOT} run in the Westmere nodes. The interactively usage is limited up to \textbf{24h} of \textbf{walltime}.
+      \vspace*{-0.2cm}
+	 \begin{verbatim}
+Mandatory arguments:
+	 -A: account
+Optional arguments:
+	 -a: architecture (default: wm, values sb=SandyBridge wm=Westmere ib=IvyBridge kepler=(GPU Kepler) fermi=(GPU Fermi))
+	 -n: number of MPI tasks (default: 1)
+	 -c: number of CPU cores per task per task (default: 1)
+	 -m: amount of memory (GB) per core (default: 1 [GB])
+	 -e: email address to which the begin session notification is to be sent
+	 -r: specify a reservation name
+	 -w: target node
+	 -J: job name
+	 -t: walltime
+	 -x: binary that you want to run interactively
+example : interactive -A uoaXXXXX -a sb -c 4 -J MyFirstInteractiveJob
+	\end{verbatim} 
       \end{block}
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
